@@ -1,14 +1,28 @@
-# thread-driver
+# thread-organization
 
-One DeepSeek Harness thread (the driver) runs a programme of work through
-several managed threads: it adopts and names them, writes their briefs, picks
-their models, waits on them, reviews what they report, and keeps the human's
-view of who is waiting on what. This skill is that management discipline. It
-sits on top of `deepseek-harness-thread-management`, which owns every Host API
-call; this skill never restates transport.
+A thread can use other top-level DeepSeek Harness threads as a more powerful
+substitute for subagents. The **Manager** thread delegates to **Reports**:
+full threads in the project's thread list that the human can watch and
+message directly, that outlive the Manager's turns, take follow-up tasks, and
+can manage Reports of their own. This skill is the management discipline for
+that arrangement. It sits on top of `deepseek-harness-thread-management`,
+which owns every Host API call; this skill never restates transport.
+
+Terms:
+
+- **Manager**: the managing thread.
+- **Report**: a managed thread. Each Report has one Manager.
+- **Hierarchical management**: a Report may manage Reports of its own.
+  Titles gain one prefix level per Manager, e.g.
+  `Train: Main Migration: Review Loop`.
 
 The parts that are easy to get wrong:
 
+- **"Dispatch an agent" means a Report**: a top-level thread, never a
+  subagent.
+- **Each level talks to the next.** A Manager instructs only its direct
+  Reports; a Report updates only its own Manager. The human may message any
+  thread, and that message wins over relayed rules.
 - **Exact sessions, current state.** Act on full `session-…` IDs, never
   titles. A registry row is "last verified at …", not current; re-read the
   runtime before a decision that depends on it.
@@ -18,28 +32,29 @@ The parts that are easy to get wrong:
 - **Inspect the inbox before sending.** An older brief still queued runs after
   the new one unless the new brief supersedes it.
 - **Infra is not quality.** A billing error, a rejected model or a transport
-  timeout before any work keeps the thread's ladder rung.
-- **Every next action has one owner**: the same thread, the driver, a named
+  timeout before any work keeps the Report's ladder rung.
+- **Every next action has one owner**: the same thread, the Manager, a named
   peer, or the human with the exact question.
-- **Approval is scoped.** Execute exactly what was approved; a new target or a
-  broader action needs a new approval. Approvals disabled in the harness means
-  rejected, not permitted.
+- **Approval is scoped and only narrows down the chain.** Execute exactly what
+  was approved; a new target or a broader action needs a new approval.
+  Approvals disabled in the harness means rejected, not permitted.
 - **No polling, no screenshots** in long-lived threads. Background waiters
   treat every terminal state as terminal.
 
 Programme specifics (title prefix, workspace, sheet, registry, ladder, the
-human who approves) are parameters read from the programme's workspace. The
-human-facing view is `WORKSPACE/Threads.md`, whose **Thread table** has the
-columns `Status | Thread | Query | Status/answer | Next action`.
+Manager's own Manager, the human who approves) are parameters read from the
+programme's workspace. The human-facing view is `WORKSPACE/Threads.md`,
+whose **Thread table** has the columns
+`Status | Thread | Query | Status/answer | Next action`.
 
 ## Usage
 
 ```
-drive these threads
-dispatch a thread for the eval sweep
+dispatch an agent to investigate the judge refusals
+dispatch this to the TIS thread
 adopt this thread
-status of the threads / who is waiting on what
-update the thread table
+give a table of threads managed by you
+who is waiting on what
 archive the finished threads
 ```
 
@@ -53,7 +68,7 @@ formats), `references/dispatch-brief.md` (brief template and round file),
 Symlinked into the central skill store:
 
 ```bash
-ln -s /Users/zhuoran/Programs/skills/thread-driver-skill ~/.agents/skills/thread-driver
+ln -s /Users/zhuoran/Programs/skills/thread-organization-skill ~/.agents/skills/thread-organization
 ```
 
 One link, not two: `~/.claude/skills` is itself a symlink to `~/.agents/skills`

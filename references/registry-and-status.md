@@ -2,28 +2,44 @@
 
 ## Registry file
 
-One file in `WORKSPACE`, e.g. `REGISTRY.md`. Header first:
+One file per Manager: `WORKSPACE/Registry.md` for the top Manager,
+`WORKSPACE/_support/<area>/Registry.md` for a sub-Manager. Header first:
 
 ```markdown
-# Atlas — managed threads
+# Atlas: Reports
 Last updated: Wed Sep 30 6:47 PM PDT (verified against the Host)
-Driver: `Atlas` · session-<uuid> · Host http://127.0.0.1:<port>
-Human: <name>
+Manager: `Atlas` · session-<uuid> · Host http://127.0.0.1:<port>
+Reports to: Dana (human)
 ```
 
-Then one row per thread. Keep archived threads in a separate section, not
-mixed into the live table.
+Then one row per direct Report. Keep a sub-Manager's Reports, threads the
+human took over, and archived threads in their own sections, not mixed into
+the live table.
 
-| thread | session | model · effort | scope (owns / may write) | task | state | next-action owner | last verified |
+| Report | session | model · effort | scope (owns / may write) | task | state | next-action owner | last verified |
 |---|---|---|---|---|---|---|---|
-| Atlas: Eval sweep | session-<uuid> | Opus · high | eval driver; `.worktrees/eval-sweep`; own cluster jobs `atlas-eval-*` | 36-point sweep | job working, 14/36 points | same thread | 6:40 PM PDT |
-| Atlas: Loader fix | session-<uuid> | Sonnet · high | `core/lib/loader/**` on branch `fix/loader` | padding fix + unit regression | reported; under review | Atlas thread | 6:10 PM PDT |
+| Atlas: Eval Sweep | session-<uuid> | Opus · high | eval sweep; `.worktrees/eval-sweep`; own cluster jobs `atlas-eval-*`; sub-Manager | 36-point sweep | job working, 14/36 points | same thread | 6:40 PM PDT |
+| Atlas: Loader Fix | session-<uuid> | Sonnet · high | `core/lib/loader/**` on branch `fix/loader` | padding fix + unit regression | delivered; Atlas reviewing | Atlas | 6:10 PM PDT |
 | Atlas: Spec | session-<uuid> | Flash · high | Notion spec "<title>" only | update rung 3 in place | blocked: Host rejected model | Dana (choose fallback) | 5:55 PM PDT |
+
+```markdown
+## Managed by Atlas: Eval Sweep (not by Atlas)
+
+| Report | session | state (from Atlas: Eval Sweep's update, 6:38 PM PDT) |
+|---|---|---|
+| Atlas: Eval Sweep: Shard Rerun | session-<uuid> | rerunning shards 9–12 |
+
+## Reporting directly to Dana (not managed by Atlas)
+
+## Archived
+```
 
 Rules:
 - `session` is the full ID. Titles are for humans.
 - `state` uses the vocabulary in SKILL.md; never "pending" alone.
 - `last verified` is when you last read the runtime, not when you last wrote.
+- A sub-Manager's section is read-only: ask that Manager, never its Reports;
+  when it is urgent, tell `HUMAN` as well.
 
 ## Thread sheet
 
@@ -57,10 +73,10 @@ Example rows:
 
 | Status | Thread | Query | Status/answer | Next action |
 |---|---|---|---|---|
-| 🟢 | **Atlas: Eval sweep** | Run the 36-point sweep | 14/36 points landed. No detail section. | Same thread: collect at 36/36. |
-| 🟡 | **Atlas: Loader fix** | Fix padding and add regression | Thread reports red→green regression; review pending. Details: [§1](#1-loader-fix). | Atlas thread: re-run tests, read diff. |
+| 🟢 | **Atlas: Eval Sweep** | Run the 36-point sweep | 14/36 points landed; its Report Shard Rerun is rerunning shards 9–12. No detail section. | Same thread: collect at 36/36. |
+| 🟡 | **Atlas: Loader Fix** | Fix padding and add regression | Claims a red→green regression; review pending. Details: [§1](#1-loader-fix). | Atlas: re-run tests, read diff. |
 | 🔵 | **Atlas: Spec** | Update rung 3 | Blocked before work: Host rejected the model. Details: [§2](#2-spec-model-rejected). | Dana: choose a fallback model. |
-| 🟢 | **Atlas: Budget check** | Is the sweep within budget? | Yes: 31 of 40 GPU-hours used. No detail section. | Atlas: Eval sweep: report final GPU-hours at 36/36. |
+| 🟢 | **Atlas: Budget Check** | Is the sweep within budget? | Yes: 31 of 40 GPU-hours used. No detail section. | **Atlas: Eval Sweep**: send final GPU-hours at 36/36. |
 
 Rules:
 - **Query → answer or progress.** A question gets its answer in the cell; a
@@ -69,7 +85,10 @@ Rules:
   numbered section below, linked as `Details: §n`; otherwise write
   `No detail section`.
 - **Every Next action starts with its owner**: `Same thread:`,
-  `<DRIVER> thread:`, `<peer thread>:` or `<HUMAN>:`.
+  `<MANAGER>:`, `<peer Report>:` or `<HUMAN>:`. Bold an owner whose title
+  contains `: `, so the owner's title stays separate from the action.
+- **Nested Reports get no rows.** A sub-Manager's row summarises its own
+  Reports.
 - Detail sections are structured explanations, not history; superseded
   detail moves to `_support/archive/`.
 - `REGISTRY` holds exact session IDs and scopes; the sheet is for reading.
@@ -82,7 +101,7 @@ One numbered section per row that links to it:
 ## 1. Loader fix
 - Claim: witness ids padded with -1; regression `loader_pad_test` red at
   a1b2c3d, green at d4e5f6a.
-- Driver check: re-run the test remotely; read the 3-file diff.
+- Manager check: re-run the test remotely; read the 3-file diff.
 - Provenance: branch `fix/loader` @ d4e5f6a; brief in
   `_support/dispatches/20260930_round.json`.
 - Next: on pass, ask <HUMAN> for the smoke launch (one job, ~40–60 min on

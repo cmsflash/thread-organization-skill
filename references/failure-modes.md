@@ -2,6 +2,13 @@
 
 | failure | check |
 |---|---|
+| Subagent spawned when the human asked to dispatch an agent | A Report is a top-level thread made with `session/create` |
+| Manager instructs another Manager's Report | Manage direct Reports only; go through their Manager |
+| Update skips the Report's own Manager | Updates go to the direct Manager only |
+| Relayed rule followed over the human's direct message | The human's message wins; act, then tell the Manager |
+| Title hides who manages a Report | One prefix level per Manager |
+| Authority widened down the chain | A brief grants no more than its Manager holds |
+| Manager archived with open Reports | Move each Report to another Manager or the human first |
 | Stale queued brief runs after a newer one | Inspect inbox before sending; briefs name what they supersede |
 | Turns continue after the human pauses | On pause: kill waiters, no re-arm, no dispatch, no "check-in" turns |
 | Model switch fails on billing or availability | Confirm the next turn ran on the model; record infra, not quality |
@@ -24,4 +31,4 @@
 | Approval re-asked or silently widened | Execute the approved set; new targets need new approval |
 | Question answered with "in progress" | Sheet rule: a question gets its answer; a task gets its progress |
 | Next action with no owner | Every Next action starts with its owner |
-| Secret pasted into a report | Never print tokens, cookies, DSNs |
+| Secret pasted into an update | Never print tokens, cookies, DSNs |

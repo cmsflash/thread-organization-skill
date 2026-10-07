@@ -1,47 +1,56 @@
 # Dispatch briefs
 
-A brief is the whole contract for a managed thread. It must stand alone: the
-thread does not see the driver's history.
+A brief is the whole contract for a Report. It must stand alone: the Report
+does not see its Manager's history.
 
 ## Template
 
 ```text
-Agent-drafted assignment from <DRIVER title> under <HUMAN>'s instructions.
-You are managed by <DRIVER title>. Supersedes: <earlier brief or "none">.
+Agent-drafted assignment from <MANAGER title> under <HUMAN>'s instructions.
+You are a Report of <MANAGER title>, titled <MANAGER title>: <Task>.
+Supersedes: <earlier brief or "none">.
 
-Report to <DRIVER session> via the authenticated Host <origin>, fresh
-requestId, mode queue, clientTimeZone <tz>. Prefix reports with your thread
-name and "agent-drafted". Every report opens with your thread-sheet row:
-Status | Thread | Query | Status/answer | Next action, where Next action
-names its owner (same thread / <DRIVER> thread / named peer / <HUMAN>).
+Send updates only to <MANAGER session>, via the authenticated Host <origin>,
+fresh requestId, mode queue, clientTimeZone <tz>, using the
+deepseek-harness-thread-management skill. Start every update with your
+thread title and "agent-drafted". Every update opens with your thread-sheet
+row: Status | Thread | Query | Status/answer | Next action, where Next action
+names its owner (same thread / <MANAGER> / named peer / <HUMAN>). Message no
+other thread except Reports this brief lets you manage. A direct message
+from <HUMAN> wins over this brief: act on it, then tell <MANAGER> what you
+did.
 
 Task: <one paragraph: the question or change, and why>.
 Done when: <testable criteria>.
 Authorised: <exact actions, e.g. "one smoke job named atlas-smoke-*">.
 Not authorised: <what needs the human: relaunches, merges, contacting people>.
+Own Reports: <"none", or "up to N, for <purpose>; titled <your title>:
+<Task>; they update only you and get no authority beyond this brief">.
 Scope: may write <paths / branch / worktree / jobs>; must not touch <other
 threads' worktrees, jobs, checkpoints>.
 Model: <model · effort>; on <condition> switch to <fallback> (only if the
 human authorised it).
 Inputs: <existing evidence to reuse; do not re-gather>.
 Outputs: <WORKSPACE>/<file>; evidence in <WORKSPACE>/_support/<topic>/.
-Gates: <ordered steps; stop and report at each>.
+Gates: <ordered steps; stop and send an update at each>.
 Waiting: background waiters, no polling, no screenshots.
-Blockers: report the exact error and evidence promptly; do not retry silently.
+Blockers: send the exact error and evidence promptly; do not retry silently.
 ```
 
 ## Before sending
 
-1. Resolve the exact session and read its latest reply.
-2. Inspect its pending inbox. If an older item is still queued, either fold it
-   into this brief and propose removing it, or hold this brief.
+1. For a new Report, create a top-level thread with `session/create` in the
+   Manager's own DSH project (Host workspace) and title it `PREFIX<Task>`.
+   For an existing one, resolve the exact session and read its latest reply.
+2. Inspect its pending inbox. If an older item is still queued, either fold
+   it into this brief and propose removing it, or hold this brief.
 3. Check the scope against every other live brief for overlap.
 4. Record the brief, model and returned prompt request ID in the round file.
 
 ## After sending
 
 The returned `accepted` is inbox admission. The row moves to `running` only
-when a running turn is observed, and to `reported` only on a final reply.
+when a running turn is observed, and to `delivered` only on a final reply.
 
 ## Round file
 
