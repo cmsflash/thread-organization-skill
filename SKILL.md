@@ -1,6 +1,6 @@
 ---
 name: thread-organization
-description: "Lets a thread use other top-level DeepSeek Harness threads as a more powerful substitute for subagents. A Manager thread delegates to Reports: full threads the human sees and messages in the UI, which persist, take follow-ups, and can manage Reports of their own (hierarchical management). Use when asked to dispatch an agent or hand work to another thread, or to coordinate threads. Triggers: 'dispatch an agent to', 'dispatch this to the X thread', 'adopt this thread', 'threads managed by you'."
+description: "Lets a thread use other top-level DeepSeek Harness threads as a more powerful substitute for subagents. A Manager thread delegates to Reports: full threads the human sees and messages in the UI, which persist, take follow-ups, and can manage Reports of their own (hierarchical management). Use to dispatch an agent, coordinate threads, or monitor a training run or a process on request. Triggers: 'dispatch an agent to', 'dispatch this to the X thread', 'keep monitoring'."
 ---
 
 # Thread organization
@@ -174,10 +174,42 @@ work one rung above the floor, and honour any model the human names.
   failure, cancellation, eviction, deletion. One that only matches success
   hangs forever on a failure.
 - No repeated status checks that re-read a long history. A check cadence, if
-  any, is long (about hourly) and does real work each time.
+  any, is long (about hourly) and does real work each time. Monitoring, below,
+  is the exception.
 - **When the human pauses or stops the programme**, kill waiters, do not
   re-arm them, do not dispatch, and leave queued items alone until told.
   Pausing means no further turns, including "just checking" ones.
+
+## Monitoring
+
+This applies only to training runs, and to processes `HUMAN` explicitly asks
+a thread to monitor ("keep monitoring", "monitor it until it finishes"). The
+thread that owns the run is its monitor. Other waits follow the previous
+section.
+
+- **The thread wakes at every checkpoint and decides.** Each checkpoint is one
+  managed background job. It waits out the interval, but wakes early when the
+  run ends, fails or restarts (for a cluster job: leaves RUNNING, or a pod
+  restarts or is OOM-killed). It then runs one thorough check and exits. The job's completion notice starts the thread's
+  turn. Read the check and decide: continue, diagnose, fix, kill, relaunch,
+  or ask `HUMAN`. Arm the next checkpoint only after that decision.
+- **Not monitoring**: a background loop that runs several checks unattended
+  and only logs them, or a waiter that wakes the thread only when the job
+  ends (Zhuoran: "The agent thread must be active at each checkpoint to make
+  decisions").
+- **Cadence**: 5 minutes, then 30 minutes, then hourly, or what `HUMAN` sets.
+  Return to a short interval after a relaunch or fix.
+- **Each check is thorough**: for a training run, liveness, step progress,
+  reward and its health metrics, saves, memory, restarts and evictions.
+  Append one line per checkpoint to the run's monitor log in `WORKSPACE`,
+  with what was decided.
+- **On a crash**, find the root cause. Where the brief or `HUMAN` authorises
+  recovery, fix it with a test that reproduces it, relaunch under the next
+  free run name, keep monitoring the relaunch, and delete the run's own
+  leftover resources at once. Otherwise, or when the cause is unclear, stop
+  and send an update with the exact question for `HUMAN`.
+- **A Manager monitors through its Reports.** It checks their updates and
+  logs on its own slower checkpoints, and does not re-run their checks.
 
 ## States: say exactly which one
 

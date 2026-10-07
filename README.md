@@ -40,6 +40,10 @@ The parts that are easy to get wrong:
   Approvals disabled in the harness means rejected, not permitted.
 - **No polling, no screenshots** in long-lived threads. Background waiters
   treat every terminal state as terminal.
+- **Monitoring is the exception**, and only for training runs or a process
+  the human explicitly asks to monitor: the thread wakes at every checkpoint
+  (5 min, then 30 min, then hourly), decides what to do, and only then arms
+  the next. An unattended loop that only logs checks does not count.
 
 Programme specifics (title prefix, workspace, sheet, registry, ladder, the
 Manager's own Manager, the human who approves) are parameters read from the
@@ -55,6 +59,7 @@ dispatch this to the TIS thread
 adopt this thread
 give a table of threads managed by you
 who is waiting on what
+keep monitoring large 8
 archive the finished threads
 ```
 

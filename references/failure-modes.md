@@ -10,6 +10,9 @@
 | Authority widened down the chain | A brief grants no more than its Manager holds |
 | Manager archived with open Reports | Move each Report to another Manager or the human first |
 | Stale queued brief runs after a newer one | Inspect inbox before sending; briefs name what they supersede |
+| Unattended loop logs checks nobody acts on | Monitoring: one background job per checkpoint, and the thread decides at each |
+| Monitor wakes only when the job ends | The waiter also exits on its interval, so the thread sees every checkpoint |
+| Ordinary waits run as tight monitoring loops | The checkpoint cadence is only for training runs and explicitly requested monitoring |
 | Turns continue after the human pauses | On pause: kill waiters, no re-arm, no dispatch, no "check-in" turns |
 | Model switch fails on billing or availability | Confirm the next turn ran on the model; record infra, not quality |
 | Model assumed available from the catalog | Verify reachability before planning on it |

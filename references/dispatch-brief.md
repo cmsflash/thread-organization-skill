@@ -34,6 +34,9 @@ Inputs: <existing evidence to reuse; do not re-gather>.
 Outputs: <WORKSPACE>/<file>; evidence in <WORKSPACE>/_support/<topic>/.
 Gates: <ordered steps; stop and send an update at each>.
 Waiting: background waiters, no polling, no screenshots.
+Monitoring: <training runs or a process HUMAN asked to monitor: "wake at
+every checkpoint and decide (5 min, then 30 min, then hourly); one managed
+background job per checkpoint, never an unattended loop"; otherwise omit>.
 Blockers: send the exact error and evidence promptly; do not retry silently.
 ```
 
