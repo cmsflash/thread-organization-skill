@@ -142,6 +142,14 @@ work. Brief template and a filled example:
 - **Dispatch independent work together**, in one round, each with its own
   brief. Record the round (briefs, models, prompt request IDs) in
   `WORKSPACE`.
+- **Always send with `mode: steer`, never `queue`**, whether it's a brief, an
+  approval, a correction or an update to a Manager (Zhuoran, Oct 7). A queued
+  message waits for the target's whole turn to end, and a monitoring thread's
+  turn can last hours: an approval queued at 6:05 PM sat unread behind a
+  30-minute checkpoint wait. Steer lands at the target's next step boundary;
+  on an idle thread it starts a turn like queue does. It still can't interrupt
+  a tool call in progress, so a thread blocked in a long wait reads it when
+  the wait returns. Keep checkpoint waits bounded so that delay stays short.
 - **Before sending to a Report, inspect its pending inbox.** A still-queued
   older brief will run after your new one. Make the new brief say what it
   supersedes and propose removing the stale item; do not just append.

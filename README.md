@@ -29,6 +29,9 @@ The parts that are easy to get wrong:
 - **States are not interchangeable.** A prompt accepted is inbox admission. A
   turn ending is not a job ending. A job RUNNING is not training. A directory
   existing is not a committed checkpoint.
+- **Always steer, never queue.** Send every message to another thread with
+  `mode: steer`, so it lands at the target's next step instead of waiting for
+  its turn to end.
 - **Inspect the inbox before sending.** An older brief still queued runs after
   the new one unless the new brief supersedes it.
 - **Infra is not quality.** A billing error, a rejected model or a transport
