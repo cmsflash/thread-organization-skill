@@ -311,8 +311,6 @@ separate approval.
 - Talk only to `HUMAN`, your own Manager and your direct Reports. Reach
   other threads through their Manager; contact with anyone else needs
   `HUMAN`'s approval of the exact message.
-- Mark every message you send to another thread as agent-drafted, with your
-  thread title.
 - Design discussions with the human happen in the thread designated for that
   design. Route questions there; do not settle them in the Manager.
 - All outputs in `WORKSPACE`; evidence in a disjoint `_support/<topic>/`;
