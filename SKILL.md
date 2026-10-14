@@ -1,6 +1,6 @@
 ---
 name: thread-organization
-description: "Lets a thread use other top-level DeepSeek Harness threads as a more powerful substitute for subagents. A Manager thread delegates to Reports: full threads the human sees and messages in the UI, which persist, take follow-ups, and can manage Reports of their own (hierarchical management). Use to dispatch an agent, coordinate threads, or monitor a training run or a process on request. Triggers: 'dispatch an agent to', 'dispatch this to the X thread', 'keep monitoring'."
+description: "Lets a thread use other top-level DeepSeek Harness threads as a more powerful substitute for subagents. A Manager thread delegates to Reports: full threads the human sees and messages in the UI, which persist, take follow-ups, and can manage Reports of their own (hierarchical management). Use to dispatch an agent, coordinate threads, monitor a training run or a process on request, or run a named pattern such as MPIR. Triggers: 'dispatch an agent to', 'dispatch this to the X thread', 'keep monitoring', 'use MPIR', 'run status table', 'report tree'."
 ---
 
 # Thread organization
@@ -318,6 +318,14 @@ separate approval.
   or secret values into an update, registry or brief.
 - No screenshots in long-lived threads. Verify visual output numerically; if
   an image is unavoidable, crop it small and keep the count low.
+
+## Optional patterns
+
+[patterns.md](references/patterns.md) collects structures from past
+programmes that `HUMAN` can ask for by name: **MPIR** (Manager, Planner,
+Implementers, Reviewers), controller and reporters, the run status table,
+the report tree, and others. None is required. When `HUMAN` names one, read
+its section; the rules above still apply.
 
 ## Failure modes this skill exists to prevent
 

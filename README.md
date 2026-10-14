@@ -64,12 +64,18 @@ give a table of threads managed by you
 who is waiting on what
 keep monitoring large 8
 archive the finished threads
+use MPIR to estimate the GPU:CPU ratio
+give me a run status table
+show your report tree with archive candidates
+temporarily transfer this thread to my reports
 ```
 
 References: `references/registry-and-status.md` (registry and thread sheet
 formats), `references/dispatch-brief.md` (brief template and round file),
 `references/model-ladder.md` (ladder rules), `references/failure-modes.md`
-(each failure with its check).
+(each failure with its check), `references/patterns.md` (optional named
+patterns from past programmes, such as MPIR, the run status table and the
+report tree).
 
 ## Install
 
