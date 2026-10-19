@@ -5,6 +5,7 @@
 | Subagent spawned when the human asked to dispatch an agent | A Report is a top-level thread made with `session/create` |
 | Manager instructs another Manager's Report | Manage direct Reports only; go through their Manager |
 | Update skips the Report's own Manager | Updates go to the direct Manager only |
+| Peer told to send its dispatcher a summary | A Peer reports only to the human; its brief asks for nothing back |
 | Relayed rule followed over the human's direct message | The human's message wins; act, then tell the Manager |
 | Title hides who manages a Report | One prefix level per Manager |
 | Authority widened down the chain | A brief grants no more than its Manager holds |

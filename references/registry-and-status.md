@@ -85,7 +85,7 @@ Rules:
   numbered section below, linked as `Details: §n`; otherwise write
   `No detail section`.
 - **Every Next action starts with its owner**: `Same thread:`,
-  `<MANAGER>:`, `<peer Report>:` or `<HUMAN>:`. Bold an owner whose title
+  `<MANAGER>:`, `<sibling Report>:` or `<HUMAN>:`. Bold an owner whose title
   contains `: `, so the owner's title stays separate from the action.
 - **Nested Reports get no rows.** A sub-Manager's row summarises its own
   Reports.

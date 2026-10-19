@@ -1,6 +1,6 @@
 ---
 name: thread-organization
-description: "Lets a thread use other top-level DeepSeek Harness threads as a more powerful substitute for subagents. A Manager thread delegates to Reports: full threads the human sees and messages in the UI, which persist, take follow-ups, and can manage Reports of their own (hierarchical management). Use to dispatch an agent, coordinate threads, monitor a training run or a process on request, or run a named pattern such as MPIR. Triggers: 'dispatch an agent to', 'dispatch this to the X thread', 'keep monitoring', 'use MPIR', 'run status table', 'report tree'."
+description: "Lets a thread use other top-level DeepSeek Harness threads as a more powerful substitute for subagents. A Manager thread delegates to Reports: full threads the human sees and messages in the UI, which persist, take follow-ups, and can manage Reports of their own (hierarchical management). Use to dispatch an agent, coordinate threads, monitor a training run or a process on request, or run a named pattern such as MPIR. Triggers: 'dispatch an agent to', 'dispatch this to the X thread', 'dispatch a peer', 'keep monitoring', 'use MPIR', 'run status table', 'report tree'."
 ---
 
 # Thread organization
@@ -34,8 +34,13 @@ restates transport.
   its own is a **sub-Manager**. A Manager's **direct Reports** are the
   threads it manages itself; Reports further down are **nested Reports**.
 - **`HUMAN`**: the person who approves. The **top Manager** reports to
-  `HUMAN`, and so does any thread `HUMAN` manages directly; neither is a
-  Report.
+  `HUMAN` and is not a Report.
+- **Peer**: a top-level thread that reports directly to `HUMAN` and is
+  outside the chain of whichever thread dispatched it, so its title has no
+  Manager prefix. It is not that thread's Report: it never reports back to
+  it (see Dispatch). A Report that `HUMAN` takes over temporarily is still a
+  Report: it keeps its prefix and returns to its Manager on handback.
+- **Siblings**: Reports of the same Manager.
 
 ## Programme parameters
 
@@ -72,8 +77,10 @@ If one is missing, ask once and record the answer in `REGISTRY`.
   it, and tells its Manager when it does.
 - **Only `HUMAN` restructures.** When a Report moves to another Manager, the
   old one stops instructing it and marks its row "transferred to
-  <Manager>"; the new one adopts it. A thread `HUMAN` takes over leaves the
-  chain; list it under "Reporting directly to `HUMAN`". Before a Manager is
+  <Manager>"; the new one adopts it. A thread `HUMAN` takes over for good
+  leaves the chain and becomes a Peer; one taken over temporarily stays a
+  Report until handback. List both under "Reporting directly to `HUMAN`",
+  and instruct neither. Before a Manager is
   archived, each of its open Reports moves to another Manager or to `HUMAN`.
 
 ## Authority
@@ -132,6 +139,12 @@ work. Brief template and a filled example:
 - **A new Report is a top-level thread**: create it with `session/create` in
   the Manager's own DSH project (Host workspace), so it shows in the same
   thread list, and title it `PREFIX<Task>`.
+- **A Peer does not report back** (Zhuoran, Oct 19). When `HUMAN` asks for
+  a Peer, create it in the same project without `PREFIX` and brief it to
+  report to `HUMAN` ([Peer brief](references/dispatch-brief.md#peer-brief)).
+  The brief must not ask it to send you updates, summaries or results, and
+  after sending it you do not instruct, wait on or review the Peer. Record
+  its session under "Reporting directly to `HUMAN`" in `REGISTRY`.
 - **One owner per area.** Route follow-up work to the Report that already
   owns the area. Create a new Report only when the owner's history would
   dominate the cost, or the work is independent.
@@ -243,7 +256,7 @@ Every open row's next action names exactly one **owner**:
 
 - **Same thread**: the Report itself is working.
 - **`MANAGER`**: the Manager owes the next action.
-- **`<peer>`**: another named Report of the same Manager.
+- **`<sibling>`**: another named Report of the same Manager.
 - **`HUMAN`**: a decision or approval; state the exact question.
 
 When the wait is on an external system (scheduler, provider, CI), name the
@@ -308,9 +321,10 @@ separate approval.
 
 ## Communication and outputs
 
-- Talk only to `HUMAN`, your own Manager and your direct Reports. Reach
-  other threads through their Manager; contact with anyone else needs
-  `HUMAN`'s approval of the exact message.
+- Talk only to `HUMAN`, your own Manager and your direct Reports, plus the
+  one brief to a Peer you dispatch. Reach other threads through their
+  Manager; contact with anyone else needs `HUMAN`'s approval of the exact
+  message.
 - Design discussions with the human happen in the thread designated for that
   design. Route questions there; do not settle them in the Manager.
 - All outputs in `WORKSPACE`; evidence in a disjoint `_support/<topic>/`;

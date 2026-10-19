@@ -15,7 +15,7 @@ fresh requestId, mode steer (never queue), clientTimeZone <tz>, using the
 deepseek-harness-thread-management skill and its message header. Below the
 header, every update opens with your thread-sheet row: Status | Thread |
 Query | Status/answer | Next action, where Next action
-names its owner (same thread / <MANAGER> / named peer / <HUMAN>). Message no
+names its owner (same thread / <MANAGER> / named sibling / <HUMAN>). Message no
 other thread except Reports this brief lets you manage. A direct message
 from <HUMAN> wins over this brief: act on it, then tell <MANAGER> what you
 did.
@@ -39,6 +39,21 @@ every checkpoint and decide (5 min, then 30 min, then hourly); one managed
 background job per checkpoint, never an unattended loop"; otherwise omit>.
 Blockers: send the exact error and evidence promptly; do not retry silently.
 ```
+
+## Peer brief
+
+A Peer reports to `HUMAN`, not to the thread that dispatched it. Use the
+template above with these changes:
+
+- Title it `<Task>`, with no Manager prefix.
+- Replace the first two lines with "You report directly to <HUMAN>; his
+  messages are your instructions."
+- Drop "Supersedes" and the whole update paragraph. Never ask the Peer to
+  send the dispatcher updates, summaries, results or a done message: it
+  answers `HUMAN` in its own thread, and blockers go to `HUMAN` too.
+- Its own Reports are `HUMAN`'s call; "Not authorised" items wait for him.
+
+Wrong: "Send Train a summary when done." Right: say nothing about Train.
 
 ## Before sending
 

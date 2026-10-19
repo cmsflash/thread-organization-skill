@@ -221,10 +221,11 @@ them?"). Archiving still needs `HUMAN`'s approval of that set.
 
 `HUMAN` may want a thread for himself, "for the time being" or for good.
 
-- **Created for `HUMAN`:** the brief opens "You report directly to
-  `HUMAN`"; his messages are its instructions. A thread that reports to him
-  for good gets no Manager prefix (Zhuoran, Oct 7: "Strip your prefix and
-  tell it to report to me").
+- **Created for `HUMAN`:** a Peer. The brief opens "You report directly to
+  `HUMAN`"; his messages are its instructions. It gets no Manager prefix
+  (Zhuoran, Oct 7: "Strip your prefix and tell it to report to me") and
+  never reports back to the thread that created it (Peer brief in
+  dispatch-brief.md).
 - **Moved to `HUMAN`:** steer the thread one message saying that it now
   reports to `HUMAN`, temporarily or not; his messages are its
   instructions; its own Reports stay with it; it archives nothing without

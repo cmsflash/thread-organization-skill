@@ -36,8 +36,12 @@ The parts that are easy to get wrong:
   the new one unless the new brief supersedes it.
 - **Infra is not quality.** A billing error, a rejected model or a transport
   timeout before any work keeps the Report's ladder rung.
+- **A Peer does not report back.** A Peer is a top-level thread that reports
+  to the human, outside the dispatcher's chain and without its title prefix.
+  Its brief never asks it to send the dispatcher summaries or results, and
+  the dispatcher does not instruct it afterwards.
 - **Every next action has one owner**: the same thread, the Manager, a named
-  peer, or the human with the exact question.
+  sibling Report, or the human with the exact question.
 - **Approval is scoped and only narrows down the chain.** Execute exactly what
   was approved; a new target or a broader action needs a new approval.
   Approvals disabled in the harness means rejected, not permitted.
