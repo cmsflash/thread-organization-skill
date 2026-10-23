@@ -337,7 +337,8 @@ separate approval.
 
 [patterns.md](references/patterns.md) collects structures from past
 programmes that `HUMAN` can ask for by name: **MPIR** (Manager, Planner,
-Implementers, Reviewers), controller and reporters, the run status table,
+Implementers, Reviewers, with a zero-context Goldfish check of the plan
+before implementation), controller and reporters, the run status table,
 the report tree, and others. None is required. When `HUMAN` names one, read
 its section; the rules above still apply.
 
