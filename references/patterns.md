@@ -28,15 +28,12 @@ wins.
 
 **M**anager → **P**lanner → **I**mplementers → **R**eviewers (the name is
 Zhuoran's, Oct 13). Expensive models plan and check; cheap models do the
-bulk work in parallel. Before the bulk work starts, zero-context Goldfish
-read the plan cold (Zhuoran, Oct 23), as in Google's
-[Elephant-Goldfish Model](https://github.com/google/elephant-goldfish-model).
+bulk work in parallel.
 
 | role | count | tier | does | writes |
 |---|---|---|---|---|
 | Manager | 1 | expensive | creates every thread, opens each stage, integrates | the deliverable, or has the final reviewer write it |
 | Planner | 1 | expensive | reconnaissance and the plan, not the bulk work | `plan.md` |
-| Goldfish | 1–3, in parallel | expensive | read the plan with no other context, as its implementers will | `goldfish/<title>.md` |
 | Implementers | N, in parallel | cheap | one slice each, followed literally | its slice folder only |
 | Reviewers | 1–2, in parallel | expensive | re-derive claims from primary data, draft sections | `review.md`, `section.md` |
 
@@ -64,42 +61,24 @@ the last one's deliverables exist and hold up.
    `plan.md` and goes to every later brief. On Oct 13 that check found the
    planner's per-minute query undercounting running sandboxes, before any
    implementer used it.
-2. **Goldfish check.** The Manager and the planner are Elephants: they hold
-   the whole history, so they cannot see what the plan leaves unsaid. In the
-   same round as the Manager's query re-run, dispatch 1–3 Goldfish, new
-   Reports that each cover a share of the slices. A Goldfish brief gives
-   only the paths of `plan.md` and `amendments.md`, read access to the
-   sources the slices use, its slices and its output file. It carries no
-   background, no summary of the discussion and no hint of suspected
-   problems, and it forbids reading other `WORKSPACE` files or other
-   threads. The Goldfish reads its slices as their implementer will and
-   lists each gap with its plan line and a severity (blocker, major, nit):
-   terms used but never defined; names, filters or windows left open; a
-   step whose input no earlier step produces; a stop criterion it could not
-   apply; an assumption it had to make to go on. It may run the plan's
-   example queries to check they work, but does no slice work. The Manager
-   settles every finding, either as a fix in `amendments.md` or as a
-   recorded reason the plan stands, and opens Implement only when no
-   blocker is open.
-3. **Implement.** Each implementer follows its slice in order and saves
+2. **Implement.** Each implementer follows its slice in order and saves
    every query or command as run, with its raw result, so a reviewer can
    re-run it. It never fills a gap by guessing or extrapolating, and it
    records where the plan was wrong.
-4. **Review.** Each reviewer verifies against primary data, not the slice
+3. **Review.** Each reviewer verifies against primary data, not the slice
    summaries, and records every claim with its source, its own query and a
    verdict: holds, corrected (with the right value) or unverifiable. It
    checks the method as well as the arithmetic (windows, attribution,
    aggregation, denominators, double counting), because cheap models can
    label a derived number measured or average averages. Corrections go in
    its own files, never an implementer's.
-5. **Integrate.** The Manager re-derives a few headline numbers itself,
+4. **Integrate.** The Manager re-derives a few headline numbers itself,
    saving each query and result under `_support/manager_checks/`, then
    assembles the reviewed sections into the deliverable, or has the final
    reviewer write it, and reports.
 
 Only the Manager creates threads; the planner's brief says so. Titles name
-the role or the slice: `X: Plan`, `X: Goldfish 1`, `X: Cluster Inventory`,
-`X: Final Review`.
+the role or the slice: `X: Plan`, `X: Cluster Inventory`, `X: Final Review`.
 
 Updates are what wake the Manager, so a Report that stops without sending
 one leaves it idle. After opening a stage, arm a background turn waiter on
@@ -114,8 +93,7 @@ Report and steered both reviewers to write up when they passed their
 plan brief.
 
 Lighter variant: for one code change, the Manager designs and reviews and
-one cheap implementer builds (Train: Eval When Idle, Oct 7). One Goldfish
-still reads the design before the implementer starts.
+one cheap implementer builds (Train: Eval When Idle, Oct 7).
 
 Examples: the whole `Ratio/` folder, a complete run (Oct 13, 6:12–10:23 PM
 PDT): briefs and templates in `Ratio/_support/dispatches/`, with
