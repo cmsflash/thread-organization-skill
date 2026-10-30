@@ -40,6 +40,9 @@ The parts that are easy to get wrong:
   to the human, outside the dispatcher's chain and without its title prefix.
   Its brief never asks it to send the dispatcher summaries or results, and
   the dispatcher does not instruct it afterwards.
+- **First reply restates the brief.** A Peer, or a Report whose first reply
+  goes to the human, opens that response by summarising what it was
+  dispatched to do.
 - **Every next action has one owner**: the same thread, the Manager, a named
   sibling Report, or the human with the exact question.
 - **Approval is scoped and only narrows down the chain.** Execute exactly what

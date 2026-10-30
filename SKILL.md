@@ -145,6 +145,10 @@ work. Brief template and a filled example:
   The brief must not ask it to send you updates, summaries or results, and
   after sending it you do not instruct, wait on or review the Peer. Record
   its session under "Reporting directly to `HUMAN`" in `REGISTRY`.
+- **First reply restates the brief** (Zhuoran, Oct 29). A Peer, or a Report
+  whose first reply goes to `HUMAN`, opens that first turn's response by
+  repeating or summarising the questions or tasks it was dispatched with, so
+  a thread read cold shows what it is answering.
 - **One owner per area.** Route follow-up work to the Report that already
   owns the area. Create a new Report only when the owner's history would
   dominate the cost, or the work is independent.

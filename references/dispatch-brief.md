@@ -38,6 +38,9 @@ Monitoring: <training runs or a process HUMAN asked to monitor: "wake at
 every checkpoint and decide (5 min, then 30 min, then hourly); one managed
 background job per checkpoint, never an unattended loop"; otherwise omit>.
 Blockers: send the exact error and evidence promptly; do not retry silently.
+First reply: <if your first reply goes to HUMAN: "Open your first turn's
+response by repeating or summarising the questions or tasks this brief
+gives you."; otherwise omit>.
 ```
 
 ## Peer brief
@@ -52,6 +55,7 @@ template above with these changes:
   send the dispatcher updates, summaries, results or a done message: it
   answers `HUMAN` in its own thread, and blockers go to `HUMAN` too.
 - Its own Reports are `HUMAN`'s call; "Not authorised" items wait for him.
+- Always keep the "First reply" line: its first reply goes to `HUMAN`.
 
 Wrong: "Send Train a summary when done." Right: say nothing about Train.
 
