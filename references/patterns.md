@@ -212,7 +212,9 @@ Never mark a thread that reports to `HUMAN`, or anything under it, for
 archiving (Zhuoran, Oct 12: "We shouldn't archive any thread reporting to
 me"); nested Reports are their own Manager's call. End with the count and
 the exact question ("That leaves 6 to archive now: … Should I archive
-them?"). Archiving still needs `HUMAN`'s approval of that set.
+them?"). Finished direct Reports should already be archived (SKILL.md,
+Close and archive); archiving anything else on the tree still needs
+`HUMAN`'s approval of that set.
 
 **Reporting to `HUMAN`** ("which threads report to me"): a table
 `Thread | Session | Since | Its own Reports`, with temporary moves marked.

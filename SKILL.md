@@ -89,7 +89,8 @@ The human's approval is scoped to an exact action, target and content. Do
 not widen it, and do not ask again for what was clearly approved.
 
 - **Needs approval of the specific action:** deleting, replacing, relaunching
-  or scaling a live job, even inside an approved plan; archiving a thread;
+  or scaling a live job, even inside an approved plan; archiving any thread
+  other than your own finished direct Report (see Close and archive);
   removing a queued message; answering a thread's pending approval or
   question; any contact with another person (review requests, mentions, DMs,
   comments); commits, pushes and PRs where the repo requires confirmation.
@@ -315,12 +316,22 @@ explicitly when it fails later; never let it stand by silence.
 
 ## Close and archive
 
-Archive only threads the human named. Before proposing an archive, move a
-Manager's open Reports (see Hierarchy), then check the thread's worktree and
-branches: copy untracked or uncommitted configs and
-evidence into `WORKSPACE/_support/archive/<topic>/` with a short README,
-list unpushed branches, and confirm no job it owns is still running.
-Archiving a thread never removes its worktree; worktree removal is a
+**Archive a Report promptly once it finishes** (Zhuoran, Nov 2). A direct
+Report is finished when its last task is reviewed as a pass, or `HUMAN`
+dropped the work, and no follow-up is queued for it. Archive it in the same
+turn as that verdict, without asking: this is a standing approval for your
+own finished direct Reports only. Move its row to the registry's Archived
+section and drop it from `SHEET`. Follow-up work in its area later goes to
+the restored thread, not a new Report. Every other archive (a Peer, a
+thread reporting to `HUMAN`, a nested Report, an unfinished Report)
+happens only when `HUMAN` names it.
+
+Before any archive, move a Manager's open Reports (see Hierarchy), then
+check the thread's worktree and branches: copy untracked or uncommitted
+configs and evidence into `WORKSPACE/_support/archive/<topic>/` with a short
+README, list unpushed branches, and confirm no job it owns is still running.
+A Report that fails a check is not finished: give it an owner and leave it
+open. Archiving a thread never removes its worktree; worktree removal is a
 separate approval.
 
 ## Communication and outputs

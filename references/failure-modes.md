@@ -29,6 +29,7 @@
 | Trend called from two points | Pre-set rule; noise floor; uncertainty |
 | Relayed claim later wrong | Re-derive before relaying; retract explicitly |
 | Registry drift and duplicate rows | One row per thread; "last updated" on every edit |
+| Finished Report left open in the thread list | Archive a direct Report in the turn its result passes review |
 | Untracked configs lost on cleanup | Copy to `_support/archive/<topic>/` before archive or removal |
 | Shared worktree changed mid-launch | One worktree per building thread |
 | Polling burns a long history | Background waiters that notify |
