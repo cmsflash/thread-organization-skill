@@ -187,6 +187,15 @@ work one rung above the floor, and honour any model the human names.
   "model unavailable" and transport timeouts before any work are infra rows:
   record the exact error, do not step the Report up or down for it, and
   follow only the fallback the human authorised.
+- **Frontier models sometimes block a request.** A turn that ends `blocked`
+  with zero steps, again on a resend, is the model refusing that turn, not
+  the Report failing. Ways out, in order (Zhuoran, Nov 3):
+  1. Cut the blocked turn and reissue a paraphrase.
+  2. Swap the Report to a similar-level model from the other provider
+     (Anthropic ↔ OpenAI).
+  3. Start a new thread with the same brief, then archive the stuck one.
+  Example: `Grading Placement: Validation` (Nov 2) ended two turns
+  `blocked` before any step; a new thread took its probe.
 - Default effort `high`. Use `max` only when asked or the task needs it, and
   keep that Report's context short; long-context `max` turns hit stream-idle
   timeouts.
