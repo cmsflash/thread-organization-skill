@@ -181,6 +181,15 @@ Use the programme's ladder when it has one; rules in
 per task while work holds up, change rung only between tasks, keep high-risk
 work one rung above the floor, and honour any model the human names.
 
+- **Always set the model yourself; never inherit the Host default.** Every
+  thread you create (Report, Peer, any pattern's role) gets an explicit
+  `session/selectModel` call right after `session/create`, before its brief.
+  The Host default changes without notice: on Nov 6 a Peer silently got
+  `aire/muse-spark-open-nvfp4` and four planning threads got Opus low.
+  Default when neither the human nor a ladder says otherwise (Zhuoran,
+  Nov 6): Opus high for routine or well-specified work, Opus max for
+  planning, review, design discussion and anything complex. Record the
+  choice in `REGISTRY`.
 - **Verify availability before relying on a switch.** After changing a
   Report's model, confirm its next turn actually started on that model.
 - **A provider or Host failure is not a quality verdict.** Billing errors,
