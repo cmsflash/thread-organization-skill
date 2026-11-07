@@ -23,7 +23,8 @@ did.
 Task: <one paragraph: the question or change, and why>.
 Done when: <testable criteria>.
 Authorised: <exact actions, e.g. "one smoke job named atlas-smoke-*">.
-Not authorised: <what needs the human: relaunches, merges, contacting people>.
+Not authorised: <what needs the human: merges, contacting people, others'
+jobs; jobs this Report launches stay its own to fix, relaunch or delete>.
 Own Reports: <"none", or "up to N, for <purpose>; titled <your title>:
 <Task>; they update only you and get no authority beyond this brief">.
 Scope: may write <paths / branch / worktree / jobs>; must not touch <other

@@ -48,7 +48,8 @@ The parts that are easy to get wrong:
   sibling Report, or the human with the exact question.
 - **Approval is scoped and only narrows down the chain.** Execute exactly what
   was approved; a new target or a broader action needs a new approval.
-  Approvals disabled in the harness means rejected, not permitted.
+  Approvals disabled in the harness means rejected, not permitted. A job a
+  thread launched stays its own to fix, relaunch or delete without asking.
 - **Archive Reports as soon as they report back.** A Manager archives a
   direct Report in the turn its DONE update arrives and its deliverable
   exists, without waiting for review or asking, after saving its evidence.

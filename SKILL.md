@@ -88,8 +88,16 @@ If one is missing, ask once and record the answer in `REGISTRY`.
 The human's approval is scoped to an exact action, target and content. Do
 not widen it, and do not ask again for what was clearly approved.
 
+- **What a thread launched stays its own** (Zhuoran, Nov 6). A job or
+  resource a thread launched remains under that thread's authority: it may
+  patch, scale, restart or delete it, relaunch a replacement within the same
+  task, and clean up its leftovers without asking again, then reports what it
+  did. Its Manager may direct it to; a thread that takes over its work
+  inherits the authority. It never extends to jobs a person or another thread
+  launched, or to shared resources.
 - **Needs approval of the specific action:** deleting, replacing, relaunching
-  or scaling a live job, even inside an approved plan; archiving any thread
+  or scaling a live job someone else launched, even inside an approved plan;
+  archiving any thread
   other than your own finished direct Report (see Close and archive);
   removing a queued message; answering a thread's pending approval or
   question; any contact with another person (review requests, mentions, DMs,
@@ -100,7 +108,9 @@ not widen it, and do not ask again for what was clearly approved.
 - **Approvals disabled in the harness is a rejection, not permission.** A
   rejected action stays undone and becomes a blocked row.
 - A Report inherits only what its brief grants. It never self-authorises a
-  config change after a failure; it sends an update and waits.
+  change to what a run measures (data, hyperparameters, limits) after a
+  failure; it sends an update and waits. Fixing, relaunching or deleting its
+  own run is covered by the first bullet.
 
 ## Registry: the durable truth
 
@@ -251,11 +261,12 @@ section.
   reward and its health metrics, saves, memory, restarts and evictions.
   Append one line per checkpoint to the run's monitor log in `WORKSPACE`,
   with what was decided.
-- **On a crash**, find the root cause. Where the brief or `HUMAN` authorises
-  recovery, fix it with a test that reproduces it, relaunch under the next
-  free run name, keep monitoring the relaunch, and delete the run's own
-  leftover resources at once. Otherwise, or when the cause is unclear, stop
-  and send an update with the exact question for `HUMAN`.
+- **On a crash**, find the root cause. For a run the thread launched, recover
+  without asking (see Authority): fix it with a test that reproduces it,
+  relaunch under the next free run name, keep monitoring the relaunch, delete
+  the run's own leftover resources at once, and report what you did. When the
+  cause is unclear, or the fix would change what the run measures, stop and
+  send an update with the exact question for `HUMAN`.
 - **A Manager monitors through its Reports.** It checks their updates and
   logs on its own slower checkpoints, and does not re-run their checks.
 
