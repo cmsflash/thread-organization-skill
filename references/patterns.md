@@ -83,7 +83,10 @@ the role or the slice: `X: Plan`, `X: Cluster Inventory`, `X: Final Review`.
 Updates are what wake the Manager, so a Report that stops without sending
 one leaves it idle. After opening a stage, arm a background turn waiter on
 each of its threads (see Wait without polling), and when one settles,
-check that its deliverable exists. On Oct 11, `Train: Colleague Run Sizes:
+check that its deliverable exists, then archive it at once, planner and
+reviewers included (SKILL.md, Close and archive); review fixes go to the
+restored implementer or a new one. On Nov 5 a Manager held seven finished
+Reports open until Zhuoran asked why. On Oct 11, `Train: Colleague Run Sizes:
 Final Review` (Opus 5.5 max) ended its turn on max-tokens at 8:38 AM PDT
 with no report and no update. Its Manager had no waiter and stayed idle
 until Train noticed, 38 hours later; rerun at high effort, the reviewer

@@ -335,15 +335,28 @@ explicitly when it fails later; never let it stand by silence.
 
 ## Close and archive
 
-**Archive a Report promptly once it finishes** (Zhuoran, Nov 2). A direct
-Report is finished when its last task is reviewed as a pass, or `HUMAN`
-dropped the work, and no follow-up is queued for it. Archive it in the same
-turn as that verdict, without asking: this is a standing approval for your
-own finished direct Reports only. Move its row to the registry's Archived
-section and drop it from `SHEET`. Follow-up work in its area later goes to
-the restored thread, not a new Report. Every other archive (a Peer, a
-thread reporting to `HUMAN`, a nested Report, an unfinished Report)
-happens only when `HUMAN` names it.
+**Archive a Report as soon as it reports back** (Zhuoran, Nov 2 and Nov 6).
+A direct Report is finished when its turn ends with a DONE update and its
+deliverable exists, or `HUMAN` dropped the work. Do not wait for review:
+archive it in the same turn you read that update and confirm the
+deliverable, without asking. This is a standing approval for your own
+finished direct Reports only. A Report you stopped at a checkpoint, one
+waiting on a sibling, or one blocked on something you will unblock is not
+finished; leave it open. Move its row to the registry's Archived section
+and drop it from `SHEET`. Every other archive (a Peer, a thread reporting
+to `HUMAN`, a nested Report, an unfinished Report) happens only when
+`HUMAN` names it.
+
+When review sends work back, restore the original Report by default. It
+still holds its history, worktree and decisions, so a fix inside its own
+scope lands fastest there (Nov 6: a restored implementer fixed a VM-test
+finding in 25 minutes). Start a new Report instead when the fix is outside
+the original's scope, when the original's context is long or degraded
+(compacted, looping, near its window; a restored thread re-reads its whole
+history on its first turn), or when the fix needs another model or role.
+Brief the new one with the finding and the original's deliverable, and
+leave the original archived. Archive the restored one again when it
+reports back.
 
 Before any archive, move a Manager's open Reports (see Hierarchy), then
 check the thread's worktree and branches: copy untracked or uncommitted

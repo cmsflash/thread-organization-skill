@@ -48,9 +48,12 @@ The parts that are easy to get wrong:
 - **Approval is scoped and only narrows down the chain.** Execute exactly what
   was approved; a new target or a broader action needs a new approval.
   Approvals disabled in the harness means rejected, not permitted.
-- **Archive finished Reports promptly.** A Manager archives a direct Report
-  in the same turn its result passes review, without asking, after saving
-  its evidence. Any other archive still needs the human to name the thread.
+- **Archive Reports as soon as they report back.** A Manager archives a
+  direct Report in the turn its DONE update arrives and its deliverable
+  exists, without waiting for review or asking, after saving its evidence.
+  Review fixes go to the restored Report, or to a new one when the fix is
+  out of scope or the old context is worn out. Any other archive still
+  needs the human to name the thread.
 - **No polling, no screenshots** in long-lived threads. Background waiters
   treat every terminal state as terminal.
 - **Monitoring is the exception**, and only for training runs or a process
