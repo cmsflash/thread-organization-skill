@@ -373,8 +373,9 @@ separate approval.
 
 - Talk only to `HUMAN`, your own Manager and your direct Reports, plus the
   one brief to a Peer you dispatch. Reach other threads through their
-  Manager; contact with anyone else needs `HUMAN`'s approval of the exact
-  message.
+  Manager, unless `HUMAN` asks you to message one directly; then send it
+  without a review round (Zhuoran, Nov 6). Contact with a colleague needs
+  `HUMAN`'s approval of the exact message.
 - Design discussions with the human happen in the thread designated for that
   design. Route questions there; do not settle them in the Manager.
 - All outputs in `WORKSPACE`; evidence in a disjoint `_support/<topic>/`;
