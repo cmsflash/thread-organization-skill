@@ -222,9 +222,9 @@ work one rung above the floor, and honour any model the human names.
   - Start a new thread with the same brief, then archive the stuck one.
   Example: `Grading Placement: Validation` (Nov 2) ended two turns
   `blocked` before any step; a new thread took its probe.
-- Default effort `high`. Use `max` only when asked or the task needs it, and
-  keep that Report's context short; long-context `max` turns hit stream-idle
-  timeouts.
+- **Effort**: `high` unless the default above, a ladder or the human calls
+  for `max`. Keep a `max` Report's context short; long-context `max` turns
+  hit stream-idle timeouts.
 
 ## Wait without polling
 
