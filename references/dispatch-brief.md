@@ -39,8 +39,8 @@ every checkpoint and decide (5 min, then 30 min, then hourly); one managed
 background job per checkpoint, never an unattended loop"; otherwise omit>.
 Blockers: send the exact error and evidence promptly; do not retry silently.
 First reply: <if your first reply goes to HUMAN: "Open your first turn's
-response by repeating or summarising the questions or tasks this brief
-gives you."; otherwise omit>.
+final answer, the message after your last tool call, by repeating or
+summarising the questions or tasks this brief gives you."; otherwise omit>.
 ```
 
 ## Peer brief

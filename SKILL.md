@@ -147,9 +147,12 @@ work. Brief template and a filled example:
   after sending it you do not instruct, wait on or review the Peer. Record
   its session under "Reporting directly to `HUMAN`" in `REGISTRY`.
 - **First reply restates the brief** (Zhuoran, Oct 29). A Peer, or a Report
-  whose first reply goes to `HUMAN`, opens that first turn's response by
+  whose first reply goes to `HUMAN`, opens that first turn's final answer by
   repeating or summarising the questions or tasks it was dispatched with, so
-  a thread read cold shows what it is answering.
+  a thread read cold shows what it is answering. The final answer is the
+  message after the turn's last tool call. A restatement written before the
+  tool calls does not count: the GUI folds that text into the work steps, so
+  the answer `HUMAN` reads starts without it (Zhuoran, Nov 6).
 - **One owner per area.** Route follow-up work to the Report that already
   owns the area. Create a new Report only when the owner's history would
   dominate the cost, or the work is independent.
