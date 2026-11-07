@@ -229,8 +229,10 @@ work one rung above the floor, and honour any model the human names.
 ## Wait without polling
 
 - Long waits run as **background waiters** (the RPC skill's turn waiter, or
-  a job watcher) that survive across turns and notify on settlement. Track
-  every job ID; collect or kill each one before closing your turn.
+  a job watcher) that survive across turns; a waiter's completion notice
+  starts your next turn. Track every job ID. Before ending a turn, account
+  for each one: collect those that settled, leave running those whose notice
+  you need, and kill the rest.
 - A watcher must treat **every** terminal state as terminal: success,
   failure, cancellation, eviction, deletion. One that only matches success
   hangs forever on a failure.
