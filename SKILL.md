@@ -97,11 +97,14 @@ not widen it, and do not ask again for what was clearly approved.
   launched, or to shared resources.
 - **Needs approval of the specific action:** deleting, replacing, relaunching
   or scaling a live job someone else launched, even inside an approved plan;
-  archiving any thread
-  other than your own finished direct Report (see Close and archive);
-  removing a queued message; answering a thread's pending approval or
-  question; any contact with another person (review requests, mentions, DMs,
-  comments); commits, pushes and PRs where the repo requires confirmation.
+  archiving any thread other than your own finished direct Report (see Close
+  and archive); removing a queued message; answering a thread's pending
+  approval or question; any contact with another person (review requests,
+  mentions, DMs, comments); commits, pushes and PRs where the repo requires
+  confirmation; merging a PR or resolving a human reviewer's thread, even on
+  a PR the thread owns (Zhuoran, Nov 6, after the thread that owned #6765
+  merged it unasked). Owning a PR does cover resolving review agents'
+  threads, such as Devin's.
 - **Approved once, then executed:** when the human approves "archive A, B,
   C", archive A, B, C without re-asking. A fourth target, a different
   resource, or a broader action is a new request.

@@ -50,6 +50,8 @@ The parts that are easy to get wrong:
   was approved; a new target or a broader action needs a new approval.
   Approvals disabled in the harness means rejected, not permitted. A job a
   thread launched stays its own to fix, relaunch or delete without asking.
+  Owning a PR covers neither merging it nor resolving a human reviewer's
+  thread.
 - **Archive Reports as soon as they report back.** A Manager archives a
   direct Report in the turn its DONE update arrives and its deliverable
   exists, without waiting for review or asking, after saving its evidence.

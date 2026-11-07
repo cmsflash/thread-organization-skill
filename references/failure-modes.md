@@ -34,6 +34,7 @@
 | Shared worktree changed mid-launch | One worktree per building thread |
 | Polling burns a long history | Background waiters that notify |
 | Approval re-asked or silently widened | Execute the approved set; new targets need new approval |
+| Owned PR merged, or a human reviewer's thread resolved, unasked | Owning a PR authorises neither; each needs approval of that exact action |
 | Question answered with "in progress" | Sheet rule: a question gets its answer; a task gets its progress |
 | Next action with no owner | Every Next action starts with its owner |
 | Secret pasted into an update | Never print tokens, cookies, DSNs |
