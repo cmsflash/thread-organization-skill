@@ -1,8 +1,8 @@
-# Brief: Atlas: Sweep Analysis: {TITLE}
+# Brief: {TITLE}
 
-Assignment from **Atlas: Sweep Analysis** (`session-<uuid>`), under
-`HUMAN`'s instructions. You are its Report, titled **Atlas: Sweep Analysis:
-{TITLE}**. Supersedes: none.
+Assignment from **Sweep Analysis** (`session-<uuid>`), under
+`HUMAN`'s instructions. You are its Report, titled **{TITLE}**. Supersedes:
+none.
 
 **Model:** `{MODEL}` (free or self-hosted), max effort. You are one of
 three implementers working in parallel on disjoint slices.
@@ -36,7 +36,7 @@ Execute slice {SLICE} of the plan and produce its output files.
 ## Terms
 
 - **Done when:** the slice's stop criteria are met, its output files exist
-  under `{DIR}/`, and you have sent Atlas: Sweep Analysis an update listing
+  under `{DIR}/`, and you have sent Sweep Analysis an update listing
   the files, headline numbers, gaps and corrections to the plan.
 - **Authorised:** the context file's read-only access.
 - **Not authorised:** any cluster write; contacting anyone; creating

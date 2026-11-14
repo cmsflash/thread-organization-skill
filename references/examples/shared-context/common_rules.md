@@ -21,7 +21,11 @@ Agent-drafted by Atlas (`session-<uuid>`) for `HUMAN`.
 - **Names:** `atlas-<stream>-<what changed>`. Write full run names in
   updates, never shorthand.
 - **Titles:** Title Case. A thread you manage is `<Task>`, nested under
-  you; `<Your Title>: <Task>` only if it could not be nested.
+  you. If it cannot be nested, title it `<Your Title>: <Task>` and say so
+  in your next update. Example: Padfix Retrain cannot nest its second
+  reporter, so it titles it `Padfix Retrain: Reporter B` and its update to
+  Atlas has the line "Reporter B is not nested (the Host refused the call),
+  so its title carries my prefix."
 - **Times:** Pacific. **Contact:** nobody besides Atlas and `HUMAN`.
 - **Updates:** one concise update per result, blocker or decision, opening
   with your thread-sheet row.

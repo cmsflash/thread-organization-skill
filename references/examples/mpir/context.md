@@ -1,6 +1,6 @@
 # Atlas sweep comparison: common context for every Report
 
-Agent-drafted by Atlas: Sweep Analysis (`session-<uuid>`) for `HUMAN`,
+Agent-drafted by Sweep Analysis (`session-<uuid>`) for `HUMAN`,
 <time PDT>.
 
 ## The question
@@ -39,11 +39,11 @@ the same 36 points. The planner fixes the exact inventory.
 
 ## Reporting
 
-Send updates only to **Atlas: Sweep Analysis** (`session-<uuid>`) on the
+Send updates only to **Sweep Analysis** (`session-<uuid>`) on the
 Host `http://127.0.0.1:<port>`: fresh `requestId`, **mode `steer`** (never
 `queue`), `clientTimeZone` `<tz>`, through the
 `deepseek-harness-thread-management` skill and its message header. Open
 with your row: `Status | Thread | Query | Status/answer | Next action`.
 Send one when you finish, and at once on a blocker, with the exact error.
 Message no other thread. A direct message from `HUMAN` wins over your
-brief: act on it, then tell Atlas: Sweep Analysis what you did.
+brief: act on it, then tell Sweep Analysis what you did.

@@ -1,8 +1,7 @@
-# Brief: Atlas: Sweep Analysis: Plan
+# Brief: Plan
 
-Assignment from **Atlas: Sweep Analysis** (`session-<uuid>`), under
-`HUMAN`'s instructions. You are its Report, titled **Atlas: Sweep Analysis:
-Plan**. Supersedes: none.
+Assignment from **Sweep Analysis** (`session-<uuid>`), under
+`HUMAN`'s instructions. You are its Report, titled **Plan**. Supersedes: none.
 
 **Model:** Fable, xhigh. Keep each reasoning step short.
 
@@ -33,10 +32,10 @@ validate the before/after join on one point, with row counts.
 ## Terms
 
 - **Done when:** `plan.md` has all six parts, the join is validated, and
-  you have sent Atlas: Sweep Analysis an update.
+  you have sent Sweep Analysis an update.
 - **Authorised:** the context file's read-only access; write only under
   `_support/plan/`.
-- **Not authorised:** creating threads (Atlas: Sweep Analysis creates the
+- **Not authorised:** creating threads (Sweep Analysis creates the
   implementers and reviewers), contacting anyone, any cluster write.
 - **Own Reports:** none. **Time cap:** ~60 minutes of agent time; at the
   cap, send what you have.

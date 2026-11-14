@@ -1,6 +1,6 @@
-# Brief: Atlas: Padfix Retrain: Reporter {NAME}
+# Brief: Reporter {NAME}
 
-Assignment from **Atlas: Padfix Retrain** (`session-<uuid>`). You are its
+Assignment from **Padfix Retrain** (`session-<uuid>`). You are its
 Report, a **read-only reporter**, on `{MODEL}`. A second reporter on
 another model does the same job independently; do not coordinate with it.
 

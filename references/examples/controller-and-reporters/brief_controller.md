@@ -1,7 +1,7 @@
-# Brief: Atlas: Padfix Retrain
+# Brief: Padfix Retrain
 
 Assignment from **Atlas** (`session-<uuid>`), under `HUMAN`'s instructions.
-You are its Report, titled **Atlas: Padfix Retrain**. Supersedes: none.
+You are its Report, titled **Padfix Retrain**. Supersedes: none.
 **Read `<WORKSPACE>/_support/common_rules.md` first.** Model: Fable, xhigh.
 You are a **controller**, not a low-level monitor.
 
@@ -17,7 +17,7 @@ You are a **controller**, not a low-level monitor.
    run no tight loop yourself.
 2. **Two reporter threads you create and manage**, on two different
    cheaper models, one of them free or self-hosted:
-   `Atlas: Padfix Retrain: Reporter A` and `…: Reporter B`. Brief each from
+   `Reporter A` and `Reporter B`. Brief each from
    `brief_reporter_template.md`.
    - Each wakes every ~10 minutes, runs the same read-only check and
      appends it to its own log.

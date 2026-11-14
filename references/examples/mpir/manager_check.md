@@ -1,6 +1,6 @@
 # Manager check c01: rows per shard at point 7
 
-Run by Atlas: Sweep Analysis (`session-<uuid>`), <time PDT>, before opening
+Run by Sweep Analysis (`session-<uuid>`), <time PDT>, before opening
 the Implement stage. In a real round this is a query file and its raw
 output, `_support/manager_checks/c01_point7_shard_rows.sql` and `.out`.
 

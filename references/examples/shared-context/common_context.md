@@ -1,7 +1,7 @@
 ## Context: `atlas-retrain-padfix` and the runs it builds on
 
 Agent-drafted by Atlas (`session-<uuid>`) for `HUMAN`, <time PDT>. Shared
-by Atlas: Retrain Report and the discussion thread Retrain Results.
+by Retrain Report and the discussion thread Retrain Results.
 
 **What the run is:** the baseline training recipe on the fixed data loader.
 - **Data:** the 3,000-task training split, with a 120-task held-out eval.

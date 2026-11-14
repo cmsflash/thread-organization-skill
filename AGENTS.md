@@ -17,6 +17,6 @@ Rules for anyone editing SKILL.md, README.md or `references/`.
 - **No costs or billing figures** from real runs.
 - **Paths never carry a username.** Write `~/…`.
 - **Example titles are made up or generic.** `Train` and
-  `Train: Main Migration` are fine.
+  `Main Migration` are fine.
 - **Examples are synthetic.** They live under `references/examples/`, and
   never cite or copy real workspace files.

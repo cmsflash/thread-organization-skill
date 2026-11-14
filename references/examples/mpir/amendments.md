@@ -1,6 +1,6 @@
 # Plan amendments (override `plan.md` where they differ)
 
-Agent-drafted by Atlas: Sweep Analysis (`session-<uuid>`) after reviewing
+Agent-drafted by Sweep Analysis (`session-<uuid>`) after reviewing
 `plan.md`, <time PDT>. Evidence is in `../manager_checks/`.
 
 ## A1. Per-point score: drop rerun duplicates first (replaces §3.1's SQL)

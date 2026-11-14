@@ -43,9 +43,8 @@ The parts that are easy to get wrong:
   thread's parent to itself when it creates or adopts it as a Report. A Peer
   never gets a parent, and a thread the human takes over for good has its
   parent cleared. A Report's title is its task alone; it carries the
-  Manager's prefix, as in `Train: Main Migration`, only when it could not be
-  nested. The parent only places the row, and a Host that cannot nest never
-  holds up a dispatch.
+  Manager's prefix only when it could not be nested. The parent only places
+  the row, and a Host that cannot nest never holds up a dispatch.
 - **A detached Report reports to the human from under its Manager.** It is
   briefed like a Peer and placed like a Report, with its parent kept.
   Reports start attached. The human asks for a detached one by that name,

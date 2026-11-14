@@ -1,8 +1,8 @@
-# Brief: Atlas: Sweep Analysis: {TITLE}
+# Brief: {TITLE}
 
-Assignment from **Atlas: Sweep Analysis** (`session-<uuid>`), under
-`HUMAN`'s instructions. You are its Report, titled **Atlas: Sweep Analysis:
-{TITLE}**. Supersedes: none.
+Assignment from **Sweep Analysis** (`session-<uuid>`), under
+`HUMAN`'s instructions. You are its Report, titled **{TITLE}**. Supersedes:
+none.
 
 **Model:** Fable, xhigh. Keep each reasoning step short. You are one of two
 reviewers working in parallel; the other reviews {OTHER}.
@@ -31,7 +31,7 @@ the slice summaries.
 ## Terms
 
 - **Done when:** `{DIR}/review.md` and `{DIR}/section.md` exist, and you
-  have sent Atlas: Sweep Analysis an update with your verdicts and the
+  have sent Sweep Analysis an update with your verdicts and the
   corrected headline numbers.
 - **Authorised:** the context file's read-only access, and reads of every
   file in the workspace.
