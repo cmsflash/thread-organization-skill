@@ -28,7 +28,8 @@ that implies for a 72-point sweep.
 - **Implementers** gather the data, one disjoint slice each (job
   inventory, results tables, launch configs), on free or self-hosted
   models at max effort.
-- **Own Reports:** up to 5, titled `Atlas: Sweep Compute Survey: <Task>`. Only
+- **Own Reports:** up to 5, their parent set to you and titled `<Task>`, or
+  `Atlas: Sweep Compute Survey: <Task>` for one that cannot be nested. Only
   you create them. They update only you and get no authority beyond this
   brief. Archive each as soon as it reports back.
 

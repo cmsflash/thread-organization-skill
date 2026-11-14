@@ -18,18 +18,23 @@ the live table.
 
 | Report | session | model · effort | scope (owns / may write) | task | state | next-action owner | last verified |
 |---|---|---|---|---|---|---|---|
-| Atlas: Eval Sweep | session-<uuid> | Opus · high | eval sweep; `.worktrees/eval-sweep`; own cluster jobs `atlas-eval-*`; sub-Manager | 36-point sweep | job working, 14/36 points | same thread | 6:40 PM PDT |
-| Atlas: Loader Fix | session-<uuid> | Sonnet · high | `core/lib/loader/**` on branch `fix/loader` | padding fix + unit regression | delivered; Atlas reviewing | Atlas | 6:10 PM PDT |
-| Atlas: Spec | session-<uuid> | Flash · high | Notion spec "<title>" only | update rung 3 in place | blocked: Host rejected model | `HUMAN` (choose fallback) | 5:55 PM PDT |
+| Eval Sweep | session-<uuid> | Opus · high | eval sweep; `.worktrees/eval-sweep`; own cluster jobs `atlas-eval-*`; sub-Manager | 36-point sweep | job working, 14/36 points | same thread | 6:40 PM PDT |
+| Loader Fix | session-<uuid> | Sonnet · high | `core/lib/loader/**` on branch `fix/loader` | padding fix + unit regression | delivered; Atlas reviewing | Atlas | 6:10 PM PDT |
+| Spec | session-<uuid> | Flash · high | Notion spec "<title>" only | update rung 3 in place | blocked: Host rejected model | `HUMAN` (choose fallback) | 5:55 PM PDT |
 
 ```markdown
-## Managed by Atlas: Eval Sweep (not by Atlas)
+## Managed by Eval Sweep (not by Atlas)
 
-| Report | session | state (from Atlas: Eval Sweep's update, 6:38 PM PDT) |
+| Report | session | state (from Eval Sweep's update, 6:38 PM PDT) |
 |---|---|---|
-| Atlas: Eval Sweep: Shard Rerun | session-<uuid> | rerunning shards 9–12 |
+| Shard Rerun | session-<uuid> | rerunning shards 9–12 |
 
 ## Reporting directly to `HUMAN` (not managed by Atlas)
+
+| Thread | session | kind | since |
+|---|---|---|---|
+| Judge Audit | session-<uuid> | detached Report | Sep 30 2:10 PM PDT |
+| Reward Curves | session-<uuid> | Peer | Sep 29 4:02 PM PDT |
 
 ## Archived
 ```
@@ -40,6 +45,13 @@ Rules:
 - `last verified` is when you last read the runtime, not when you last wrote.
 - A sub-Manager's section is read-only: ask that Manager, never its Reports;
   when it is urgent, tell `HUMAN` as well.
+- Under "Reporting directly to `HUMAN`", `kind` is `Peer` or `detached
+  Report`, nothing else: a Report he takes over for a while is detached, and
+  a thread he takes over for good is a Peer. Attaching a detached Report
+  moves its row into the live table, and detaching one moves it back.
+  Nothing on the Host records attachment, so this row is the record.
+- A detached sub-Manager keeps its "Managed by" section, with the state
+  from its last update before the detach.
 
 ## Thread sheet
 
@@ -73,10 +85,10 @@ Example rows:
 
 | Status | Thread | Query | Status/answer | Next action |
 |---|---|---|---|---|
-| 🟢 | **Atlas: Eval Sweep** | Run the 36-point sweep | 14/36 points landed; its Report Shard Rerun is rerunning shards 9–12. No detail section. | Same thread: collect at 36/36. |
-| 🟡 | **Atlas: Loader Fix** | Fix padding and add regression | Claims a red→green regression; review pending. Details: [§1](#1-loader-fix). | Atlas: re-run tests, read diff. |
-| 🔵 | **Atlas: Spec** | Update rung 3 | Blocked before work: Host rejected the model. Details: [§2](#2-spec-model-rejected). | `HUMAN`: choose a fallback model. |
-| 🟢 | **Atlas: Budget Check** | Is the sweep within budget? | Yes: 31 of 40 GPU-hours used. No detail section. | **Atlas: Eval Sweep**: send final GPU-hours at 36/36. |
+| 🟢 | **Eval Sweep** | Run the 36-point sweep | 14/36 points landed; its Report Shard Rerun is rerunning shards 9–12. No detail section. | Same thread: collect at 36/36. |
+| 🟡 | **Loader Fix** | Fix padding and add regression | Claims a red→green regression; review pending. Details: [§1](#1-loader-fix). | Atlas: re-run tests, read diff. |
+| 🔵 | **Spec** | Update rung 3 | Blocked before work: Host rejected the model. Details: [§2](#2-spec-model-rejected). | `HUMAN`: choose a fallback model. |
+| 🟢 | **Budget Check** | Is the sweep within budget? | Yes: 31 of 40 GPU-hours used. No detail section. | Eval Sweep: send final GPU-hours at 36/36. |
 
 Rules:
 - **Query → answer or progress.** A question gets its answer in the cell; a

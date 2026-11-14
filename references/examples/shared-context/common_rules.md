@@ -20,7 +20,8 @@ Agent-drafted by Atlas (`session-<uuid>`) for `HUMAN`.
   Delete only what your run created.
 - **Names:** `atlas-<stream>-<what changed>`. Write full run names in
   updates, never shorthand.
-- **Titles:** Title Case. A thread you manage is `<Your Title>: <Task>`.
+- **Titles:** Title Case. A thread you manage is `<Task>`, nested under
+  you; `<Your Title>: <Task>` only if it could not be nested.
 - **Times:** Pacific. **Contact:** nobody besides Atlas and `HUMAN`.
 - **Updates:** one concise update per result, blocker or decision, opening
   with your thread-sheet row.

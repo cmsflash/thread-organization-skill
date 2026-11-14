@@ -12,9 +12,8 @@ Terms:
 
 - **Manager**: the managing thread.
 - **Report**: a managed thread. Each Report has one Manager.
-- **Hierarchical management**: a Report may manage Reports of its own.
-  Titles gain one prefix level per Manager, e.g.
-  `Train: Main Migration: Review Loop`.
+- **Hierarchical management**: a Report may manage Reports of its own, and
+  the thread list nests each Report under its Manager.
 
 The parts that are easy to get wrong:
 
@@ -37,9 +36,22 @@ The parts that are easy to get wrong:
 - **Infra is not quality.** A billing error, a rejected model or a transport
   timeout before any work keeps the Report's ladder rung.
 - **A Peer does not report back.** A Peer is a top-level thread that reports
-  to the human, outside the dispatcher's chain and without its title prefix.
+  to the human, outside the dispatcher's chain and without a parent.
   Its brief never asks it to send the dispatcher summaries or results, and
   the dispatcher does not instruct it afterwards.
+- **Reports sit under their Manager in the thread list.** A Manager sets a
+  thread's parent to itself when it creates or adopts it as a Report. A Peer
+  never gets a parent, and a thread the human takes over for good has its
+  parent cleared. A Report's title is its task alone; it carries the
+  Manager's prefix, as in `Train: Main Migration`, only when it could not be
+  nested. The parent only places the row, and a Host that cannot nest never
+  holds up a dispatch.
+- **A detached Report reports to the human from under its Manager.** It is
+  briefed like a Peer and placed like a Report, with its parent kept.
+  Reports start attached. The human asks for a detached one by that name,
+  or takes a Report over for a while, which detaches it; handing it back
+  attaches it. Its Manager does the detaching and attaching, only on his
+  word, by one message to the Report.
 - **First reply restates the brief.** A Peer, or a Report whose first reply
   goes to the human, opens that turn's final answer, the message after its
   last tool call, by summarising what it was dispatched to do. Text written
@@ -77,6 +89,8 @@ whose **Thread table** has the columns
 dispatch an agent to investigate the failing eval
 dispatch this to the X thread
 adopt this thread
+dispatch a detached report to audit the judge
+attach that report to you again
 give a table of threads managed by you
 who is waiting on what
 keep monitoring the run

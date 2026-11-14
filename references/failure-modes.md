@@ -6,8 +6,11 @@
 | Manager instructs another Manager's Report | Manage direct Reports only; go through their Manager |
 | Update skips the Report's own Manager | Updates go to the direct Manager only |
 | Peer told to send its dispatcher a summary | A Peer reports only to the human; its brief asks for nothing back |
+| "Dispatch a peer" answered with a detached Report | A peer request makes a Peer; detached only when the human says detached or takes a Report over without saying for good |
+| Detached Report instructed, awaited, reviewed or archived by its Manager | It reports only to the human; its Manager messages it again only to relay an attach |
 | Relayed rule followed over the human's direct message | The human's message wins; act, then tell the Manager |
-| Title hides who manages a Report | One prefix level per Manager |
+| Nested Report titled with its Manager's prefix | A Report's title is its task; the prefix is only for a thread that could not be nested |
+| Report's row left at the top of the thread list | Set its parent to yourself on create and on adopt, before the brief |
 | Authority widened down the chain | A brief grants no more than its Manager holds |
 | Manager archived with open Reports | Move each Report to another Manager or the human first |
 | Stale queued brief runs after a newer one | Inspect inbox before sending; briefs name what they supersede |

@@ -11,7 +11,7 @@ fits it; the rules in SKILL.md still apply inside every pattern.
 | [Shared context, short briefs](#shared-context-short-briefs) | several Reports need the same background | — |
 | [Run status table](#run-status-table) | `HUMAN` wants every run's state | "run status table", "non-run progress" |
 | [Report tree](#report-tree) | `HUMAN` wants the hierarchy or archive candidates | "report tree", "agent tree", "who reports to me" |
-| [Reporting directly to `HUMAN`](#reporting-directly-to-human) | `HUMAN` wants to work with a thread himself | "report to me directly", "transfer X to me", "discuss with me" |
+| [Reporting directly to `HUMAN`](#reporting-directly-to-human) | `HUMAN` wants to work with a thread himself | "report to me directly", "transfer X to me", "a detached report", "discuss with me" |
 | [Autonomy window](#autonomy-window) | `HUMAN` is away and allows routine decisions | "fix simple things until I wake up" |
 | [Follow-on report](#follow-on-report) | a new deliverable copies an earlier one's form | "a similar report on X", "source context from Y" |
 | [Subagents inside a Report](#subagents-inside-a-report) | `HUMAN` leaves the choice open | "a thread or a sub-agent, your choice" |
@@ -67,7 +67,7 @@ the last one's deliverables exist and hold up.
    reviewer write it, and reports.
 
 Only the Manager creates threads; the planner's brief says so. Titles name
-the role or the slice: `X: Plan`, `X: Cluster Inventory`, `X: Final Review`.
+the role or the slice: `Plan`, `Cluster Inventory`, `Final Review`.
 
 Updates are what wake the Manager, so a Report that stops without sending
 one leaves it idle. After opening a stage, arm a background turn waiter on
@@ -187,10 +187,10 @@ branches, with a mark and a one-line reason on every node.
 
 HUMAN
 ├── Train (me) ✅
-│   ├── Train: Loader Fix 🗄️ ........... fix merged, results saved
-│   └── Train: Sweep Compute Survey ✅ .. survey not finished
-│       └── …: Survey Plan ⏳ ........... its Manager's call, after the report
-└── Train: Eval Sweep (→ you) ✅
+│   ├── Loader Fix 🗄️ .................. fix merged, results saved
+│   └── Sweep Compute Survey ✅ ......... survey not finished
+│       └── Survey Plan ⏳ .............. its Manager's call, after the report
+└── Eval Sweep (→ you) ✅
 ```
 
 Never mark a thread that reports to `HUMAN`, or anything under it, for
@@ -201,24 +201,29 @@ Close and archive); archiving anything else on the tree still needs
 `HUMAN`'s approval of that set.
 
 **Reporting to `HUMAN`** ("which threads report to me"): a table
-`Thread | Session | Since | Its own Reports`, with temporary moves marked.
+`Thread | Session | Since | Its own Reports`, with detached Reports marked.
 
 ## Reporting directly to `HUMAN`
 
 `HUMAN` may want a thread for himself, "for the time being" or for good.
 
 - **Created for `HUMAN`:** a Peer. The brief opens "You report directly to
-  `HUMAN`"; his messages are its instructions. It gets no Manager prefix
-  and never reports back to the thread that created it (Peer brief in
+  `HUMAN`"; his messages are its instructions. It gets no parent and never
+  reports back to the thread that created it (Peer brief in
   dispatch-brief.md).
-- **Moved to `HUMAN`:** steer the thread one message saying that it now
-  reports to `HUMAN`, temporarily or not; his messages are its
+- **Detached:** a detached Report: a Peer's brief under a Report's parent
+  (SKILL.md, Dispatch). `HUMAN` asks for one by that name, or takes a
+  Report over "for the time being"; a handback attaches it again.
+  The messages that detach and attach a working Report are worded in
+  dispatch-brief.md, "Detached Report brief".
+- **Moved to `HUMAN`:** a takeover for good. Steer the thread one message
+  saying that it now reports to `HUMAN` for good; his messages are its
   instructions; its own Reports stay with it; it archives nothing without
-  his say; its rules are unchanged; and, if the move is temporary, its old
-  Manager resumes on handback. Moved threads have kept their titles.
+  his say; and its rules are unchanged. It becomes a Peer (SKILL.md,
+  Hierarchy).
 - **In the registry:** list it under "Reporting directly to `HUMAN`" with
-  its session, when it moved and whether the move is temporary. The old
-  Manager stops instructing it, still shows it in its views marked
+  its session, when it moved and its kind, `Peer` or `detached Report`. The
+  old Manager stops instructing it, still shows it in its views marked
   "(→ you)", and never proposes archiving it.
 - **Discussion partner:** a thread created for `HUMAN` to think with. It
   opens with a one-paragraph read of the results, the 3–5 questions or

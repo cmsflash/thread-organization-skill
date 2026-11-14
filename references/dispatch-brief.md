@@ -7,7 +7,7 @@ does not see its Manager's history.
 
 ```text
 Assignment from <MANAGER title> under <HUMAN>'s instructions.
-You are a Report of <MANAGER title>, titled <MANAGER title>: <Task>.
+You are a Report of <MANAGER title>, titled <the Report's title>.
 Supersedes: <earlier brief or "none">.
 
 Send updates only to <MANAGER session>, via the authenticated Host <origin>,
@@ -25,8 +25,9 @@ Done when: <testable criteria>.
 Authorised: <exact actions, e.g. "one smoke job named atlas-smoke-*">.
 Not authorised: <what needs the human: merges, contacting people, others'
 jobs; jobs this Report launches stay its own to fix, relaunch or delete>.
-Own Reports: <"none", or "up to N, for <purpose>; titled <your title>:
-<Task>; they update only you and get no authority beyond this brief">.
+Own Reports: <"none", or "up to N, for <purpose>; their parent set to you
+and titled <Task>, or <your title>: <Task> for one that cannot be nested;
+they update only you and get no authority beyond this brief">.
 Scope: may write <paths / branch / worktree / jobs>; must not touch <other
 threads' worktrees, jobs, checkpoints>.
 Model: <model · effort>; on <condition> switch to <fallback> (only if the
@@ -49,7 +50,7 @@ summarising the questions or tasks this brief gives you."; otherwise omit>.
 A Peer reports to `HUMAN`, not to the thread that dispatched it. Use the
 template above with these changes:
 
-- Title it `<Task>`, with no Manager prefix.
+- Title it `<Task>` and give it no parent; a Peer never takes `PREFIX`.
 - Replace the first two lines with "You report directly to <HUMAN>; his
   messages are your instructions."
 - Drop "Supersedes" and the whole update paragraph. Never ask the Peer to
@@ -60,11 +61,34 @@ template above with these changes:
 
 Wrong: "Send Train a summary when done." Right: say nothing about Train.
 
+## Detached Report brief
+
+A detached Report is placed like a Report and briefed like a Peer. Use the
+Peer brief with these changes:
+
+- Nest and title it as for any Report.
+- After "You report directly to <HUMAN>; his messages are your
+  instructions." add: "You are a detached Report of <MANAGER title>: you
+  sit under it in the thread list, but you send it nothing and it does not
+  instruct you. If <HUMAN> attaches you, <MANAGER title> will say so in one
+  message that names where your updates go; from then on you are its
+  Report."
+
+To detach a Report that is already working, which is what `HUMAN` taking it
+over for a while means, steer it one message: "From now on you report
+directly to <HUMAN>; his messages are your instructions.", then the quoted
+paragraph above, then "Your task, scope, rules and own Reports are
+unchanged, and you archive nothing without his say." To attach one, which
+is what a handback means, steer it one message: "<HUMAN> has attached you
+to <MANAGER title>: from now on you are its Report.", then the template's
+update paragraph, which names where its updates go.
+
 ## Before sending
 
 1. For a new Report, create a top-level thread with `session/create` in the
-   Manager's own DSH project (Host workspace) and title it `PREFIX<Task>`.
-   For an existing one, resolve the exact session and read its latest reply.
+   Manager's own DSH project (Host workspace), then nest and title it in the
+   order SKILL.md's Dispatch gives. For an existing one, resolve the exact
+   session and read its latest reply.
 2. Inspect its pending inbox. If an older item is still queued, either fold
    it into this brief and propose removing it, or hold this brief.
 3. Check the scope against every other live brief for overlap.

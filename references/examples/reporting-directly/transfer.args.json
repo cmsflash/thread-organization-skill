@@ -7,7 +7,7 @@
     "content": [
       {
         "type": "text",
-        "text": "[agent-drafted: Atlas (session-<uuid>) -> Atlas: Sweep Compute Survey (session-<uuid>)]\n\n**Reporting change (`HUMAN`, <time PDT>): you now report directly to `HUMAN`, temporarily.**\n- Atlas no longer instructs you, and `HUMAN`'s messages here are your instructions. Discuss your survey with him in this thread.\n- Your own Reports (Plan, Job Inventory, Results Tables, Final Review) stay yours.\n- **Don't archive anything** without his say.\n- **Rules unchanged:** read-only, no contact with anyone else.\n\nWhen he hands you back, Atlas resumes as your Manager."
+        "text": "[agent-drafted: Atlas (session-<uuid>) -> Atlas: Sweep Compute Survey (session-<uuid>)]\n\nFrom now on you report directly to `HUMAN`; his messages are your instructions. You are a detached Report of Atlas: you sit under it in the thread list, but you send it nothing and it does not instruct you. If `HUMAN` attaches you, Atlas will say so in one message that names where your updates go; from then on you are its Report. Your task, scope, rules and own Reports are unchanged, and you archive nothing without his say."
       }
     ]
   }

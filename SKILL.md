@@ -1,6 +1,6 @@
 ---
 name: thread-organization
-description: "Lets a thread use other top-level DeepSeek Harness threads as a more powerful substitute for subagents. A Manager thread delegates to Reports: full threads the human sees and messages in the UI, which persist, take follow-ups, and can manage Reports of their own (hierarchical management). Use to dispatch an agent, coordinate threads, monitor a training run or a process on request, or run a named pattern such as MPIR. Triggers: 'dispatch an agent to', 'dispatch this to the X thread', 'dispatch a peer', 'keep monitoring', 'use MPIR', 'run status table', 'report tree'."
+description: "Lets a thread use other top-level DeepSeek Harness threads as a more powerful substitute for subagents. A Manager thread delegates to Reports: full threads the human sees and messages in the UI, which persist, take follow-ups, and can manage Reports of their own (hierarchical management). Use to dispatch an agent, coordinate threads, monitor a training run or a process on request, or run a named pattern such as MPIR. Triggers: 'dispatch an agent to', 'dispatch this to the X thread', 'dispatch a peer', 'dispatch a detached report', 'keep monitoring', 'use MPIR', 'run status table', 'report tree'."
 ---
 
 # Thread organization
@@ -18,7 +18,7 @@ When the human says "dispatch an agent" or "give this to another thread",
 create or reuse a Report, never a subagent: a top-level thread in the same
 project, so the work is visible to the human in the UI.
 
-For every Host API call (create, list, read a reply, prompt, rename,
+For every Host API call (create, list, read a reply, prompt, rename, nest,
 archive, wait), use `deepseek-harness-thread-management`; this skill never
 restates transport.
 
@@ -35,10 +35,16 @@ restates transport.
 - **`HUMAN`**: the person who approves. The **top Manager** reports to
   `HUMAN` and is not a Report.
 - **Peer**: a top-level thread that reports directly to `HUMAN` and is
-  outside the chain of whichever thread dispatched it, so its title has no
-  Manager prefix. It is not that thread's Report: it never reports back to
-  it (see Dispatch). A Report that `HUMAN` takes over temporarily is still a
-  Report: it keeps its prefix and returns to its Manager on handback.
+  outside the chain of whichever thread dispatched it, so it has no parent.
+  It is not that thread's Report: it never reports back to it (see
+  Dispatch).
+- **Parent**: the thread a thread's row sits under in the thread list. It
+  places the row and nothing else (see Hierarchy).
+- **Detached Report**: a Report that reports only to `HUMAN`, as a Peer
+  does, but keeps a Report's place: its Manager stays its parent. Every
+  other Report is **attached**, and Reports start attached. A Report
+  `HUMAN` takes over for a while is detached, and handing it back attaches
+  it.
 - **Siblings**: Reports of the same Manager.
 
 ## Programme parameters
@@ -49,7 +55,7 @@ Read these from the programme's workspace before acting; never hard-code them:
 |---|---|
 | `MANAGER` | this Manager's exact session ID, title and Host origin |
 | `REPORTS_TO` | this Manager's own Manager (exact session), or `HUMAN` for the top Manager |
-| `PREFIX` | title prefix for direct Reports: `MANAGER`'s title plus `: ` |
+| `PREFIX` | title prefix for a direct Report that could not be nested: `MANAGER`'s title plus `: ` |
 | `WORKSPACE` | the one folder for every programme artifact |
 | `SHEET` | the human-facing thread sheet, `WORKSPACE/Threads.md`, kept by the top Manager |
 | `REGISTRY` | this Manager's registry of its Reports: `WORKSPACE/Registry.md` for the top Manager, `WORKSPACE/_support/<area>/Registry.md` for a sub-Manager |
@@ -68,19 +74,31 @@ If one is missing, ask once and record the answer in `REGISTRY`.
 - **The human outranks the chain.** A direct message from `HUMAN` wins over
   any relayed rule, such as a freeze or a scope limit. Act on it, then tell
   your Manager what you did.
-- **Titles show the chain**, in Title Case, one prefix level per Manager:
-  under `Train`, a Report is `Train: Main Migration` and its Report is
-  `Train: Main Migration: Review Loop`, never `Train: Review Loop`.
+- **The thread list shows the chain, not the title.** Set a thread's parent
+  to yourself when you create it as a Report and when you adopt it; a
+  sub-Manager does the same for its own Reports. A Peer never gets a
+  parent. The parent only places the row: it grants no authority, and
+  `REGISTRY`, not the parent, says who manages whom. Nesting never holds up
+  a dispatch: if the Host refuses the call or does not have it, carry on,
+  title the thread with `PREFIX` (see Dispatch), and say in your next
+  update that it is not nested. A title that has a prefix keeps it: nesting,
+  a detach or a takeover never removes it. A Host can lose its parent
+  links: when you see, or are told, that your Reports have no parent, set
+  each one's parent again from its `REGISTRY` row and say so in your next
+  update.
 - **Authority only narrows.** A brief grants no more than its Manager holds.
   A Report takes on Reports of its own only when its brief or `HUMAN` allows
   it, and tells its Manager when it does.
 - **Only `HUMAN` restructures.** When a Report moves to another Manager, the
   old one stops instructing it and marks its row "transferred to
-  <Manager>"; the new one adopts it. A thread `HUMAN` takes over for good
-  leaves the chain and becomes a Peer; one taken over temporarily stays a
-  Report until handback. List both under "Reporting directly to `HUMAN`",
-  and instruct neither. Before a Manager is
-  archived, each of its open Reports moves to another Manager or to `HUMAN`.
+  <Manager>"; the new one adopts it, which sets its parent to the new
+  Manager, so the old one does not clear it. A thread `HUMAN` takes over
+  for good leaves the chain and becomes a Peer: its old Manager clears its
+  parent and steers it the message under "Moved to `HUMAN`" in
+  [patterns.md](references/patterns.md). A Report he takes over for a while
+  is detached instead (see Dispatch). List both under "Reporting directly
+  to `HUMAN`", and instruct neither. Before a Manager is archived, each of
+  its open Reports moves to another Manager or to `HUMAN`.
 
 ## Authority
 
@@ -136,11 +154,12 @@ update. Format and example:
 ## Adopt a thread
 
 When an existing thread comes under management: confirm the exact session,
-read its latest reply, rename it to `PREFIX<Task>` (keep the old title in
-the registry), record its model, scope, open work, worktree and unpushed
+read its latest reply, set its parent to yourself, keep its title (rename it
+to `PREFIX<Task>` only if it could not be nested, with the old title in the
+registry), record its model, scope, open work, worktree and unpushed
 branches, then add it to `REGISTRY`, `SHEET` and the ladder ledger. If it
-already manages Reports, it keeps them and retitles them itself. Renaming is
-an approved write only when the human asked for adoption.
+already manages Reports, it keeps them. Nesting and renaming are approved
+writes only when the human asked for adoption.
 
 ## Dispatch
 
@@ -150,13 +169,34 @@ work. Brief template and a filled example:
 
 - **A new Report is a top-level thread**: create it with `session/create` in
   the Manager's own DSH project (Host workspace), so it shows in the same
-  thread list, and title it `PREFIX<Task>`.
+  thread list. Then, in order: set its parent to yourself; title it `<Task>`
+  in Title Case; set its model; send its brief. Its place under you shows
+  whose Report it is, so the title has no Manager prefix. Only a thread that
+  could not be nested is titled `PREFIX<Task>`: its title is then all that
+  shows the chain. With a parent it remains a full thread, not a subagent.
 - **A Peer does not report back.** When `HUMAN` asks for
-  a Peer, create it in the same project without `PREFIX` and brief it to
-  report to `HUMAN` ([Peer brief](references/dispatch-brief.md#peer-brief)).
+  a Peer, create it in the same project without `PREFIX` and without a
+  parent, and brief it to report to `HUMAN`
+  ([Peer brief](references/dispatch-brief.md#peer-brief)).
   The brief must not ask it to send you updates, summaries or results, and
   after sending it you do not instruct, wait on or review the Peer. Record
   its session under "Reporting directly to `HUMAN`" in `REGISTRY`.
+- **A detached Report reports to `HUMAN` from under you.** Create one only
+  when `HUMAN` asks for a detached Report: "dispatch a peer" means a Peer.
+  Create, nest and title it as a Report, and brief it as a Peer
+  ([Detached Report brief](references/dispatch-brief.md#detached-report-brief)).
+  While a Report is detached you do not instruct, wait on, review or
+  archive it. Record it under "Reporting directly to `HUMAN`" in
+  `REGISTRY`, marked detached.
+- **A Report's Manager attaches or detaches it, only on `HUMAN`'s word.**
+  Taking a Report over for a while ("for the time being", "temporarily",
+  "report to me directly" when he means for now) is a detach, and handing
+  it back is an attach. When he takes a Report over without saying for how
+  long, detach it: a detach keeps the title and the parent and is undone by
+  one message. Steer the Report the detach or attach message, worded as in
+  [Detached Report brief](references/dispatch-brief.md#detached-report-brief),
+  then move its row in `REGISTRY`. The Host does not record attachment:
+  that message and the registry row are the whole record.
 - **First reply restates the brief.** A Peer, or a Report
   whose first reply goes to `HUMAN`, opens that first turn's final answer by
   repeating or summarising the questions or tasks it was dispatched with, so
@@ -197,7 +237,7 @@ work one rung above the floor, and honour any model the human names.
 
 - **Always set the model yourself; never inherit the Host default.** Every
   thread you create (Report, Peer, any pattern's role) gets an explicit
-  `session/selectModel` call right after `session/create`, before its brief.
+  `session/selectModel` call before its brief (Dispatch gives the order).
   The Host default changes without notice, so a new thread can silently get
   a free or self-hosted model or a low effort.
   Default when neither the human nor a ladder says otherwise: Fable
