@@ -33,8 +33,8 @@ the live table.
 
 | Thread | session | kind | since |
 |---|---|---|---|
-| Judge Audit | session-<uuid> | detached Report | Sep 30 2:10 PM PDT |
-| Reward Curves | session-<uuid> | Peer | Sep 29 4:02 PM PDT |
+| Judge Audit | session-<uuid> | detached Report | <time PDT> |
+| Reward Curves | session-<uuid> | Peer | <time PDT> |
 
 ## Archived
 ```
