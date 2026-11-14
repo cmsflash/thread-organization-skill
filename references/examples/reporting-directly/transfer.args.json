@@ -1,0 +1,14 @@
+{
+  "request": {
+    "requestId": "<fresh uuid>",
+    "sessionId": "session-<uuid>",
+    "mode": "steer",
+    "clientTimeZone": "<tz>",
+    "content": [
+      {
+        "type": "text",
+        "text": "[agent-drafted: Atlas (session-<uuid>) -> Atlas: Sweep Compute Survey (session-<uuid>)]\n\n**Reporting change (`HUMAN`, <time PDT>): you now report directly to `HUMAN`, temporarily.**\n- Atlas no longer instructs you, and `HUMAN`'s messages here are your instructions. Discuss your survey with him in this thread.\n- Your own Reports (Plan, Job Inventory, Results Tables, Final Review) stay yours.\n- **Don't archive anything** without his say.\n- **Rules unchanged:** read-only, no contact with anyone else.\n\nWhen he hands you back, Atlas resumes as your Manager."
+      }
+    ]
+  }
+}
