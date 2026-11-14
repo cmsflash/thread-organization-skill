@@ -9,7 +9,7 @@
 | "Dispatch a peer" answered with a detached Report | A peer request makes a Peer; detached only when the human says detached or takes a Report over without saying for good |
 | Detached Report instructed, awaited, reviewed or archived by its Manager | It reports only to the human; its Manager messages it again only to relay an attach |
 | Relayed rule followed over the human's direct message | The human's message wins; act, then tell the Manager |
-| Nested Report titled with its Manager's prefix | A Report's title is its task; the prefix is only for a thread that could not be nested |
+| New Report nested and titled with its Manager's prefix | Once nested, a new Report is titled with its task alone; the prefix is only for one that could not be nested. A title that has a prefix keeps it |
 | Report's row left at the top of the thread list | Set its parent to yourself on create and on adopt, before the brief |
 | Authority widened down the chain | A brief grants no more than its Manager holds |
 | Manager archived with open Reports | Move each Report to another Manager or the human first |
