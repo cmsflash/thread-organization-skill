@@ -83,12 +83,12 @@ If one is missing, ask once and record the answer in `REGISTRY`.
   title the thread with `PREFIX` (see Dispatch), and say in your next
   update that it is not nested. A title that has a prefix keeps it: nesting,
   a detach or a takeover never removes it. A Host can lose its parent
-  links. When `HUMAN` or your Manager tells you it has, set the parent again
-  for each Report in `REGISTRY`'s live table and each detached Report it
-  lists, tell your attached sub-Managers to do the same, and say so in your
-  next update. A Report without a parent is not by itself a reason to nest
-  it: outside a create or an adoption, nest only when `HUMAN` or your
-  Manager asks.
+  links. When `HUMAN` or your Manager tells you it has, set them again from
+  `REGISTRY` as
+  [Restoring parent links](references/registry-and-status.md#restoring-parent-links)
+  describes, and say so in your next update. A Report without a parent is
+  not by itself a reason to nest it: outside a create or an adoption, nest
+  only when `HUMAN` or your Manager asks.
 - **Authority only narrows.** A brief grants no more than its Manager holds.
   A Report takes on Reports of its own only when its brief or `HUMAN` allows
   it, and tells its Manager when it does.
@@ -402,10 +402,10 @@ archive it in the same turn you read that update and confirm the
 deliverable, without asking. This is a standing approval for your own
 finished direct Reports only. A Report you stopped at a checkpoint, one
 waiting on a sibling, or one blocked on something you will unblock is not
-finished; leave it open. Move its row to the registry's Archived section
-and drop it from `SHEET`. Every other archive (a Peer, a thread reporting
-to `HUMAN`, a nested Report, an unfinished Report) happens only when
-`HUMAN` names it.
+finished; leave it open. Move its row to the registry's Archived section,
+with its session ID and its kind, `Report`, and drop it from `SHEET`. Every
+other archive (a Peer, a thread reporting to `HUMAN`, a nested Report, an
+unfinished Report) happens only when `HUMAN` names it.
 
 When review sends work back, restore the original Report by default. It
 still holds its history, worktree and decisions, so a fix inside its own

@@ -37,6 +37,12 @@ the live table.
 | Reward Curves | session-<uuid> | Peer | <time PDT> |
 
 ## Archived
+
+| Thread | session | kind | own registry | archived |
+|---|---|---|---|---|
+| Padding Repro | session-<uuid> | Report | | <time PDT> |
+| Compute Survey | session-<uuid> | Report | `_support/compute_survey/Registry.md` | <time PDT> |
+| Draft Notes | session-<uuid> | Peer | | <time PDT> |
 ```
 
 Rules:
@@ -52,6 +58,30 @@ Rules:
   Nothing on the Host records attachment, so this row is the record.
 - A detached sub-Manager keeps its "Managed by" section, with the state
   from its last update before the detach.
+- An Archived row keeps the thread's full session ID and its `kind`
+  (`Report`, `detached Report` or `Peer`); a sub-Manager's row also keeps
+  the path of its own registry file. Restoring parent links reads all
+  three.
+
+## Restoring parent links
+
+When told that the Host lost its parent links (SKILL.md, Hierarchy), work
+from your own registry file.
+
+- **Set the parent to yourself** for every row of the live table not
+  marked transferred, every detached Report under "Reporting directly to
+  `HUMAN`", and every Archived row whose kind is `Report` or `detached
+  Report`. An Archived row with no kind counts as a Report, unless the row
+  says the thread reported to `HUMAN`: that one gets no parent.
+- **Set nothing** for a row marked "transferred to <Manager>", which its
+  new Manager restores, or for a Peer, live or archived. The Host takes
+  this call from any thread and the last call wins, so a wrong one moves a
+  thread away from its Manager.
+- **Sub-Managers.** Tell each live, attached one to do the same for its
+  own Reports. A live, detached one is not yours to instruct: name it in
+  your update, so that `HUMAN` can tell it. An archived one cannot be
+  told: apply these rules to its registry file yourself, setting each
+  parent to it, not to you.
 
 ## Thread sheet
 
