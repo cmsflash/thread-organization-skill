@@ -215,7 +215,9 @@ Close and archive); archiving anything else on the tree still needs
   (SKILL.md, Dispatch). `HUMAN` asks for one by that name, or takes a
   Report over "for the time being"; a handback attaches it again.
   The messages that detach and attach a working Report are worded in
-  dispatch-brief.md, "Detached Report brief".
+  [Detached Report brief](dispatch-brief.md#detached-report-brief). Sync the
+  native marker and registry separately using [attachment and Host sync](attachment.md);
+  a successful message alone does not update the indicator.
 - **Moved to `HUMAN`:** a takeover for good. Steer the thread one message
   saying that it now reports to `HUMAN` for good; his messages are its
   instructions; its own Reports stay with it; it archives nothing without

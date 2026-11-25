@@ -66,7 +66,10 @@ Wrong: "Send Train a summary when done." Right: say nothing about Train.
 A detached Report is placed like a Report and briefed like a Peer. Use the
 Peer brief with these changes:
 
-- Nest and title it as for any Report.
+- Nest and title it as for any Report, then sync its detached Host marker
+  with the expected parent before selecting its model and sending the brief.
+  Follow [attachment and Host sync](attachment.md) if either step fails;
+  preserve the detached brief and record the mismatch.
 - After "You report directly to <HUMAN>; his messages are your
   instructions." add: "You are a detached Report of <MANAGER title>: you
   sit under it in the thread list, but you send it nothing and it does not
@@ -81,7 +84,11 @@ paragraph above, then "Your task, scope, rules and own Reports are
 unchanged, and you archive nothing without his say." To attach one, which
 is what a handback means, steer it one message: "<HUMAN> has attached you
 to <MANAGER title>: from now on you are its Report.", then the template's
-update paragraph, which names where its updates go.
+update paragraph, which names where its updates go. Sync the corresponding
+Host marker and update `REGISTRY` separately; a successful message does not
+confirm the marker, and a successful marker write does not deliver this
+instruction. Only `HUMAN` authorizes either change; see
+[attachment and Host sync](attachment.md) for partial failure handling.
 
 ## Before sending
 

@@ -55,13 +55,19 @@ Rules:
   Report`, nothing else: a Report he takes over for a while is detached, and
   a thread he takes over for good is a Peer. Attaching a detached Report
   moves its row into the live table, and detaching one moves it back.
-  Nothing on the Host records attachment, so this row is the record.
+  Instructions and this row record the human-directed behavior; the Host
+  marker records display state. Keep intended attachment, last observed
+  parent/marker, message request ID/admission, marker sync outcome and any
+  mismatch with its next-action owner visible in the row or linked evidence.
+  Follow [attachment and Host sync](attachment.md); neither a stale marker
+  nor an unsupported Host reverses the human's instruction.
 - A detached sub-Manager keeps its "Managed by" section, with the state
   from its last update before the detach.
 - An Archived row keeps the thread's full session ID and its `kind`
   (`Report`, `detached Report` or `Peer`); a sub-Manager's row also keeps
   the path of its own registry file. Restoring parent links reads all
-  three.
+  three. Archive and restore retain the Host marker; preserve any outstanding
+  sync mismatch rather than treating archive as a handback.
 
 ## Restoring parent links
 
@@ -82,6 +88,19 @@ from your own registry file.
   your update, so that `HUMAN` can tell it. An archived one cannot be
   told: apply these rules to its registry file yourself, setting each
   parent to it, not to you.
+- **Restore the recorded marker after each verified parent.** For eligible
+  rows, sync detached for a recorded detached Report and attached for a
+  recorded attached Report, passing that restored parent as the expected
+  parent. A parent clear removes detachment, so restoring only the link can
+  leave a detached Report falsely displayed as attached. Use the last
+  human-directed attachment, not an inferred default from missing history;
+  the legacy kind fallback above authorizes only parent restoration. If
+  attachment intent is unclear, leave marker sync blocked for `HUMAN`.
+  Transferred rows and Peers get no marker write. Archived Reports retain
+  their recorded attachment, without unarchiving or prompting them. This is
+  display repair under the restore instruction, not autonomous restructuring.
+  Record unsupported Hosts and partial failures as
+  [attachment and Host sync](attachment.md) requires.
 
 ## Thread sheet
 

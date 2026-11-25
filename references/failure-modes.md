@@ -8,6 +8,9 @@
 | Peer told to send its dispatcher a summary | A Peer reports only to the human; its brief asks for nothing back |
 | "Dispatch a peer" answered with a detached Report | A peer request makes a Peer; detached only when the human says detached or takes a Report over without saying for good |
 | Detached Report instructed, awaited, reviewed or archived by its Manager | It reports only to the human; its Manager messages it again only to relay an attach |
+| Marker sync mistaken for instruction delivery, or a message mistaken for marker sync | Track both receipts separately in the registry; [attachment and Host sync](attachment.md) covers partial failures |
+| Unsupported Host or stale icon reverses a human-directed detach | Preserve the instructed behavior, visibly record the marker mismatch, and reconcile before retrying |
+| Adoption, restore or archive silently reattaches a Report | Preserve recorded attachment; only the human can change it; no descendant cascade |
 | Relayed rule followed over the human's direct message | The human's message wins; act, then tell the Manager |
 | New Report nested and titled with its Manager's prefix | Once nested, a new Report is titled with its task alone; the prefix is only for one that could not be nested. A title that has a prefix keeps it |
 | New or adopted Report's row left at the top of the thread list | Set its parent to yourself on create and on adopt, before the brief |

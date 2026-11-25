@@ -49,8 +49,13 @@ The parts that are easy to get wrong:
   briefed like a Peer and placed like a Report, with its parent kept.
   Reports start attached. The human asks for a detached one by that name,
   or takes a Report over for a while, which detaches it; handing it back
-  attaches it. Its Manager does the detaching and attaching, only on his
-  word, by one message to the Report.
+  attaches it. Its Manager acts only on the human's word: steer the Report,
+  sync the native attachment marker with its expected parent, and update the
+  registry. The person icon before a detached title (`Detached: reports to
+  you`) is an indicator, not a toggle. The message is not marker sync and the
+  marker is not delivery; unsupported Hosts never reverse the instruction.
+  Record mismatches visibly. [Attachment and Host sync](references/attachment.md)
+  covers partial failures and lifecycle cases; no action cascades to descendants.
 - **First reply restates the brief.** A Peer, or a Report whose first reply
   goes to the human, opens that turn's final answer, the message after its
   last tool call, by summarising what it was dispatched to do. Text written

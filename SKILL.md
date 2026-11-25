@@ -162,7 +162,11 @@ to `PREFIX<Task>` only if it could not be nested, with the old title in the
 registry), record its model, scope, open work, worktree and unpushed
 branches, then add it to `REGISTRY`, `SHEET` and the ladder ledger. If it
 already manages Reports, it keeps them. Nesting and renaming are approved
-writes only when the human asked for adoption.
+writes only when the human asked for adoption. Reparenting preserves detachment:
+carry forward its recorded attachment unless `HUMAN` also directs a change.
+For a detached adoption, keep its row under "Reporting directly to `HUMAN`";
+do not begin directing it. Reconcile its marker without inventing a handback
+([attachment and Host sync](references/attachment.md)).
 
 ## Dispatch
 
@@ -186,8 +190,10 @@ work. Brief template and a filled example:
   its session under "Reporting directly to `HUMAN`" in `REGISTRY`.
 - **A detached Report reports to `HUMAN` from under you.** Create one only
   when `HUMAN` asks for a detached Report: "dispatch a peer" means a Peer.
-  Create, nest and title it as a Report, and brief it as a Peer
-  ([Detached Report brief](references/dispatch-brief.md#detached-report-brief)).
+  Create, nest and title it as a Report, sync its native detached marker,
+  then select its model and send the
+  [Detached Report brief](references/dispatch-brief.md#detached-report-brief).
+  If nesting or marker sync fails, preserve that brief and record the mismatch.
   While a Report is detached you do not instruct, wait on, review or
   archive it. Record it under "Reporting directly to `HUMAN`" in
   `REGISTRY`, marked detached.
@@ -195,11 +201,18 @@ work. Brief template and a filled example:
   Taking a Report over for a while ("for the time being", "temporarily",
   "report to me directly" when he means for now) is a detach, and handing
   it back is an attach. When he takes a Report over without saying for how
-  long, detach it: a detach keeps the title and the parent and is undone by
-  one message. Steer the Report the detach or attach message, worded as in
-  [Detached Report brief](references/dispatch-brief.md#detached-report-brief),
-  then move its row in `REGISTRY`. The Host does not record attachment:
-  that message and the registry row are the whole record.
+  long, detach it: a detach keeps the title and the parent. Steer the Report
+  the [detach or attach message](references/dispatch-brief.md#detached-report-brief),
+  sync the Host marker with `deepseek-harness-thread-management`'s
+  `set-attachment.mjs` and expected current parent, then move its registry row.
+  Instructions and `REGISTRY` remain the behavioral record; the native marker
+  only displays a person icon before a detached title, with tooltip
+  `Detached: reports to you`, not a toggle. A message is not marker sync and a
+  marker is not delivery. Keep the human-directed behavior on an unsupported
+  Host; record and report every mismatch. Read
+  [attachment and Host sync](references/attachment.md) for sequencing, partial
+  failures, adoption, transferred/archived cases and lost-link restoration.
+  Never attach or detach autonomously, and never cascade to descendants.
 - **First reply restates the brief.** A Peer, or a Report
   whose first reply goes to `HUMAN`, opens that first turn's final answer by
   repeating or summarising the questions or tasks it was dispatched with, so
